@@ -1,21 +1,36 @@
 {% macro generate_schema_name(custom_schema_name, node) %}
   {%- set re = modules.re -%}
+  {%- set default_schema = target.schema -%}
   {% set target_name = target.name %}
-  {% set branch = env_var('DBT_CLOUD_GIT_BRANCH', env_var('DBT_CURRENT_BRANCH_NAME', 'none')) %}
 
-  {%- set branch_clean = re.sub('[^\w]', '_', branch) | lower -%}
-  {% set pr_number = ('pr' ~ env_var('DBT_CLOUD_PR_ID', '')) if env_var('DBT_CLOUD_PR_ID', '') else env_var('DBT_PR_NUMBER', 'none') %}
+  {% if target_name == 'ci' %}
+    {# CI: Use dbt's default behavior #}
+    {%- if custom_schema_name is none -%}
+      {{ default_schema }}
+    {%- else -%}
+      {{ default_schema }}_{{ custom_schema_name | trim }}
+    {%- endif -%}
 
-  {% if target_name == 'prod' %}
+  {% elif target_name == 'prod' %}
+    {# Prod: Just use custom schema name as-is #}
     {{ custom_schema_name }}
 
   {% elif target_name == 'dev' %}
-    {{ custom_schema_name }}_{{ branch_clean | replace("-", "_") | replace("/", "_") | lower | trim }}
+    {# Dev: Custom schema + branch name suffix #}
+    {% set branch = env_var('DBT_CLOUD_GIT_BRANCH', env_var('DBT_CURRENT_BRANCH_NAME', '')) %}
 
-  {% elif target_name == 'ci' %}
-    {{ custom_schema_name }}_{{ pr_number | lower | trim }}
+    {% if branch %}
+      {%- set branch_clean = re.sub('[^\w]', '_', branch) | lower -%}
+      {%- set suffix = branch_clean | replace("-", "_") | replace("/", "_") | lower | trim -%}
+    {% else %}
+      {# If no branch name, use default schema as suffix (e.g., dbt_fr) #}
+      {%- set suffix = default_schema -%}
+    {% endif %}
+
+    {{ custom_schema_name }}_{{ suffix }}
 
   {% else %}
+    {# Fallback for other targets #}
     {{ custom_schema_name }}
 
   {% endif %}

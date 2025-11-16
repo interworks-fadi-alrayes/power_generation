@@ -1,0 +1,51 @@
+# dbt
+target/
+dbt_packages/
+dbt_internal_packages/
+logs/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+
+# Profiles (contains credentials)
+profiles.yml
+
+# Compiled files
+*.pyc
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# pytest
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# SQLFluff
+.sqlfluff.tmp

@@ -1,18 +1,17 @@
 {% macro generate_database_name(custom_database_name=none, node=none) -%}
     {%- set default_database = target.database -%}
-    {%- set base_database = custom_database_name | trim | lower -%}
-    {%- set base_project = project_name -%}
 
-    {# Use dev suffix for non-prod environments #}
-    {% if target.name == 'prod' %}
-        {%- set generated_database = 'power_generation_PROD' -%}
-    {%- else -%}
-        {%- set generated_database = 'power_generation_DEV' -%}
-    {%- endif -%}
+    {# Use custom database if provided from dbt_project.yml #}
+    {% if custom_database_name %}
+        {{ custom_database_name }}
+    {% elif target.name == 'prod' %}
+        {{ 'power_generation_prod' }}
+    {% elif target.name == 'ci' %}
+        {{ 'power_generation_ci' }}
+    {% else %}
+        {{ 'power_generation_dev' }}
+    {% endif %}
 
-    {{ generated_database }}
-
- 
 {%- endmacro %}
 
 
