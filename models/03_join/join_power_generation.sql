@@ -18,10 +18,10 @@ fact_parsed as (
 
         -- Parse start_date from DD.MM.YYYY HH:MM format
         start_date,
-        to_timestamp(start_date, 'DD.MM.YYYY HH24:MI') as start_datetime,
+        end_date,
 
         -- Parse end_date from DD.MM.YYYY HH:MM format
-        end_date,
+        to_timestamp(start_date, 'DD.MM.YYYY HH24:MI') as start_datetime,
         to_timestamp(end_date, 'DD.MM.YYYY HH24:MI') as end_datetime,
 
         -- Extract date components from start_date
@@ -30,7 +30,8 @@ fact_parsed as (
         day(to_timestamp(start_date, 'DD.MM.YYYY HH24:MI')) as start_day,
         hour(to_timestamp(start_date, 'DD.MM.YYYY HH24:MI')) as start_hour,
         minute(to_timestamp(start_date, 'DD.MM.YYYY HH24:MI')) as start_minute,
-        to_date(to_timestamp(start_date, 'DD.MM.YYYY HH24:MI')) as start_date_only,
+        to_date(to_timestamp(start_date, 'DD.MM.YYYY HH24:MI'))
+            as start_date_only,
 
         -- Extract date components from end_date
         year(to_timestamp(end_date, 'DD.MM.YYYY HH24:MI')) as end_year,
@@ -40,7 +41,11 @@ fact_parsed as (
         minute(to_timestamp(end_date, 'DD.MM.YYYY HH24:MI')) as end_minute,
 
         -- Calculate duration in hours
-        datediff(hour, to_timestamp(start_date, 'DD.MM.YYYY HH24:MI'), to_timestamp(end_date, 'DD.MM.YYYY HH24:MI')) as duration_hours
+        datediff(
+            hour,
+            to_timestamp(start_date, 'DD.MM.YYYY HH24:MI'),
+            to_timestamp(end_date, 'DD.MM.YYYY HH24:MI')
+        ) as duration_hours
 
     from fact
 ),
@@ -49,22 +54,16 @@ weather_parsed as (
     select
         postal_code,
         time,
-        to_timestamp(time) as weather_datetime,
+        temperature_2m_c,
 
         -- Extract date components
-        year(to_timestamp(time)) as weather_year,
-        month(to_timestamp(time)) as weather_month,
-        day(to_timestamp(time)) as weather_day,
-        hour(to_timestamp(time)) as weather_hour,
-        to_date(to_timestamp(time)) as weather_date_only,
-
-        -- Weather measurements
-        temperature_2m_c,
         wind_speed_10m_m_s,
         wind_speed_80m_m_s,
         shortwave_radiation_w_m2,
         direct_radiation_w_m2,
         diffuse_radiation_w_m2,
+
+        -- Weather measurements
         precipitation_mm,
         cloud_cover,
         pressure_msl_hpa,
@@ -72,7 +71,13 @@ weather_parsed as (
         snowfall_cm,
         country_english,
         latitude,
-        longitude
+        longitude,
+        to_timestamp(time) as weather_datetime,
+        year(to_timestamp(time)) as weather_year,
+        month(to_timestamp(time)) as weather_month,
+        day(to_timestamp(time)) as weather_day,
+        hour(to_timestamp(time)) as weather_hour,
+        to_date(to_timestamp(time)) as weather_date_only
 
     from weather
 )
@@ -126,16 +131,10 @@ select
     fp.value_mw,
 
     -- Calculated metrics
-    fp.value_mw * fp.duration_hours as energy_mwh,
-    case
-        when u.net_electrical_capacity_mw > 0
-        then (fp.value_mw / u.net_electrical_capacity_mw) * 100
-        else null
-    end as capacity_utilization_pct,
-
-    -- Weather data
     w.weather_datetime,
     w.weather_year,
+
+    -- Weather data
     w.weather_month,
     w.weather_day,
     w.weather_hour,
@@ -152,11 +151,17 @@ select
     w.snowfall_cm,
     w.country_english,
     w.latitude,
-    w.longitude
+    w.longitude,
+    fp.value_mw * fp.duration_hours as energy_mwh,
+    case
+        when u.net_electrical_capacity_mw > 0
+            then (fp.value_mw / u.net_electrical_capacity_mw) * 100
+    end as capacity_utilization_pct
 
-from fact_parsed fp
-left join units u
+from fact_parsed as fp
+left join units as u
     on fp.power_generation_unit_id = u.power_generation_unit_id
-left join weather_parsed w
-    on u.unit_postal_code = w.postal_code
-    and fp.start_datetime = w.weather_datetime
+left join weather_parsed as w
+    on
+        u.unit_postal_code = w.postal_code
+        and fp.start_datetime = w.weather_datetime

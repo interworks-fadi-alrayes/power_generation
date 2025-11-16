@@ -1,0 +1,209 @@
+# This file overlays default configuration available from (may be updated in future)
+# https://docs.sqlfluff.com/en/stable/configuration.html#default-configuration
+
+[sqlfluff]
+
+# Set verbosity level to 0 (minimal output).
+verbose = 0
+
+# Enable colored output in the terminal.
+nocolor = False
+
+# Set SQL dialect to databricks.
+dialect = snowflake
+
+# Use dbt as the templater for SQL files.
+templater = dbt
+
+
+# Maximum length for formatted output lines.
+output_line_length = 180
+
+# Maximum allowable line length in SQL files.
+max_line_length = 180
+
+# Limit for considering a query part as 'runaway'.
+runaway_limit = 10
+
+# Ignore areas in templates when linting.
+ignore_templated_areas = True
+
+# Auto-detect file encoding.
+encoding = autodetect
+
+# Allow disabling rules with inline comments.
+disable_noqa = False
+
+# File extensions to be considered as SQL files.
+sql_file_exts = .sql,.sql.j2,.dml,.ddl
+
+# No specific rules to enforce; use defaults.
+rules = None
+
+exclude_rules = ST01, ST06, ST07
+
+# ST01: Select wildcards then simple targets before calculations and aggregates.
+# Note:
+# This rule violates the ordinal positions of the columns and therefore is too restrictive
+# and doesn't add any value.
+
+# ST06: Do not specify 'else null' in a case when statement (redundant). [structure.else_null]
+# Note:
+# This rule is preposterouly wrong as excluding the else null is a valid use case and could lead
+# to failures if skipped in some cases.
+
+# ST07: Prefer specifying join keys instead of using USING
+# Note
+# This rule was originally taken from the dbt Style Guide which notes that:
+#   Certain warehouses have inconsistencies in USING results (specifically Snowflake).
+# In fact dbt removed it from their style guide in February 2022.
+# However, some like the rule, so for now we will keep it in SQLFluff, but
+# encourage those that do not find value in the rule, to turn it off.
+
+
+[sqlfluff:templater:dbt]
+
+
+[sqlfluff:indentation]
+
+# Use spaces for indentation.
+indent_unit = space
+
+# Each tab equals 2 spaces.
+tab_space_size = 2
+
+# Do not indent lines following JOIN clauses.
+indented_joins = False
+
+# Indent lines following USING or ON clauses.
+indented_using_on = True
+
+# Indent blocks inside templated areas.
+template_blocks_indent = True
+
+[sqlfluff:templater]
+
+# Unwrap queries that are wrapped in templating blocks.
+unwrap_wrapped_queries = True
+
+[sqlfluff:templater:jinja]
+
+# Apply dbt-specific built-in functions.
+apply_dbt_builtins = True
+
+[sqlfluff:layout:type:comma]
+
+# Place commas at the beginning of lines.
+line_position = leading
+
+[sqlfluff:rules]
+
+# Disallow scalar subqueries where they aren't necessary.
+allow_scalar = False
+
+# Enforce consistent reference to single tables.
+single_table_references = consistent
+
+# All identifiers must be unquoted.
+unquoted_identifiers_policy = all
+
+[sqlfluff:rules:aliasing.table]
+
+# Tables must always be aliased explicitly.
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.column]
+
+# Columns must always be aliased explicitly.
+aliasing = explicit
+
+[sqlfluff:rules:layout.long_lines]
+
+# Do not ignore comment lines when checking line length.
+ignore_comment_lines = False
+
+[sqlfluff:rules:references.consistent]
+
+# Enforce consistent reference to single tables.
+single_table_references = consistent
+
+[sqlfluff:rules:references.keywords]
+
+# All keywords must be unquoted.
+unquoted_identifiers_policy = all
+
+# No keywords should be quoted.
+quoted_identifiers_policy = none
+
+[sqlfluff:rules:capitalisation.keywords]
+
+# Keywords should be in lowercase.
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.identifiers]
+
+# Identifiers should use lowcase.
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.functions]
+
+# Functions should use lowcase.
+extended_capitalisation_policy = snake
+
+[sqlfluff:rules:capitalisation.types]
+
+# Types should have consistent capitalisation.
+extended_capitalisation_policy = consistent
+
+[sqlfluff:rules:capitalisation.literals]
+
+# Literals should be in lowercase.
+capitalisation_policy = lower
+
+[sqlfluff:rules:convention.select_trailing_comma]
+
+# Forbid trailing commas in SELECT clauses.
+select_clause_trailing_comma = forbid
+
+[sqlfluff:rules:structure.subquery]
+
+# Forbid subqueries in FROM and JOIN clauses.
+forbid_subquery_in = both
+
+[sqlfluff:rules:convention.count_rows]
+
+# Do not prefer COUNT(1) over COUNT(*).
+prefer_count_1 = False
+
+# Do not prefer COUNT(0) over COUNT(*).
+prefer_count_0 = False
+
+[sqlfluff:rules:convention.terminator]
+
+# Do not require newline at the end of multi-line statements.
+multiline_newline = False
+
+# Do not require a final semicolon.
+require_final_semicolon = False
+
+[sqlfluff:rules:ambiguous.column_references]
+
+# Enforce explicit column references in GROUP BY and ORDER BY.
+group_by_and_order_by_style = explicit
+
+[sqlfluff:rules:references.special_chars]
+
+# All special characters in identifiers must be unquoted.
+unquoted_identifiers_policy = all
+
+# All special characters in identifiers must be quoted.
+quoted_identifiers_policy = all
+
+# Do not allow spaces in identifiers.
+allow_space_in_identifier = False
+
+# Rules about column projection organization in the SELECT clause.
+[sqlfluff:rules:layout.select_targets]
+
+# Treats '*' as multiple targets and hence allows on a new line.
+wildcard_policy = multiple

@@ -1,7 +1,7 @@
 select
-    POWERGENERATIONID as power_generation_id,
-    STARTDATE as start_date,
-    ENDDATE as end_date,
-    POWER_GENERATIONUNITID as power_generation_unit_id,
-    VALUEMW as value_mw
+    POWERGENERATIONID as POWER_GENERATION_ID,
+    STARTDATE as START_DATE,
+    ENDDATE as END_DATE,
+    POWER_GENERATIONUNITID as POWER_GENERATION_UNIT_ID,
+    VALUEMW as VALUE_MW
 from {{ source('raw_power_generation', 'fact_power_generation') }}
