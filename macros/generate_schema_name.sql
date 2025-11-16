@@ -23,7 +23,7 @@
           {% set suffix = default_schema %}
       {% endif %}
 
-      {{ custom_schema_name }}_{{ suffix }}
+      {{ suffix }}_{{ custom_schema_name }}
 
   {# FALLBACK #}
   {% else %}
