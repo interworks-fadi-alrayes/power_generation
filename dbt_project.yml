@@ -42,7 +42,6 @@ models:
   power_generation:
     # Applies to all files under models/power_generation/
     +materialized: view
-    #+database: power_generation
     02_clean:
       +schema: O2_CLEAN
     03_join:
