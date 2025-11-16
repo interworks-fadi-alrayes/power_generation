@@ -1,0 +1,97 @@
+version: 2
+
+sources:
+  - name: raw_power_generation
+    description: Raw power generation data sources
+    tables:
+      - name: fact_power_generation_final
+        description: Fact table containing power generation readings
+        columns:
+          - name: POWERGENERATIONID
+            description: Unique identifier for power generation record
+          - name: STARTDATE
+            description: Start date and time of generation period
+          - name: ENDDATE
+            description: End date and time of generation period
+          - name: POWER_GENERATIONUNITID
+            description: Foreign key to power generation unit
+          - name: VALUEMW
+            description: Power generated in megawatts
+
+      - name: dim_power_generation_unit_final
+        description: Dimension table for power generation units
+        columns:
+          - name: POWERGENERATIONUNITID
+            description: Unique identifier for power generation unit
+          - name: UNITNAME
+            description: Name of the power generation unit
+          - name: OPERATOR
+            description: Operator of the unit
+          - name: UNITSTREET
+            description: Street address
+          - name: UNITHOUSENUMBER
+            description: House number
+          - name: UNITPOSTALCODE
+            description: Postal code
+          - name: UNITCITY
+            description: City
+          - name: UNITSTATE
+            description: State
+          - name: ENERGYSOURCE
+            description: Energy source type
+          - name: ISSTORAGE
+            description: Whether unit has storage capability
+          - name: VOLTAGELEVEL
+            description: Voltage level
+          - name: PLANTSTATUS
+            description: Current status of the plant
+          - name: COMMISSIONINGYEAR
+            description: Year commissioned
+          - name: DECOMMISSIONINGYEAR
+            description: Year decommissioned
+          - name: GROSSCAPACITYMW
+            description: Gross capacity in megawatts
+          - name: NETELECTRICALCAPACITYMW
+            description: Net electrical capacity in megawatts
+          - name: ISCROSSBORDERUNIT
+            description: Whether unit is cross-border
+          - name: FEEDINTYPE
+            description: Type of feed-in
+          - name: GRIDOPERATOR
+            description: Grid operator name
+
+      - name: dim_weather_final
+        description: Dimension table for weather data
+        columns:
+          - name: TIME
+            description: Timestamp of weather observation
+          - name: TEMPERATURE_2M_C
+            description: Temperature at 2m in Celsius
+          - name: WIND_SPEED_10M_M_S
+            description: Wind speed at 10m in m/s
+          - name: WIND_SPEED_80M_M_S
+            description: Wind speed at 80m in m/s
+          - name: SHORTWAVE_RADIATION_W_M2
+            description: Shortwave radiation in W/m²
+          - name: DIRECT_RADIATION_W_M2
+            description: Direct radiation in W/m²
+          - name: DIFFUSE_RADIATION_W_M2
+            description: Diffuse radiation in W/m²
+          - name: PRECIPITATION_MM
+            description: Precipitation in mm
+          - name: CLOUDCOVER
+            description: Cloud cover percentage
+          - name: PRESSURE_MSL_HPA
+            description: Mean sea level pressure in hPa
+          - name: RAIN_MM
+            description: Rain in mm
+          - name: SNOWFALL_CM
+            description: Snowfall in cm
+          - name: POSTAL_CODE
+            description: Postal code of weather station
+          - name: COUNTRY_ENGLISH
+            description: Country name in English
+          - name: LATITUDE
+            description: Latitude coordinate
+          - name: LONGITUDE
+            description: Longitude coordinate
