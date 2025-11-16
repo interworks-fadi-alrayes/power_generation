@@ -3,8 +3,9 @@ version: 2
 sources:
   - name: raw_power_generation
     description: Raw power generation data sources
+    schema: O1_raw
     tables:
-      - name: fact_power_generation_final
+      - name: fact_power_generation
         description: Fact table containing power generation readings
         columns:
           - name: POWERGENERATIONID
@@ -18,7 +19,7 @@ sources:
           - name: VALUEMW
             description: Power generated in megawatts
 
-      - name: dim_power_generation_unit_final
+      - name: dim_unit
         description: Dimension table for power generation units
         columns:
           - name: POWERGENERATIONUNITID
@@ -60,7 +61,7 @@ sources:
           - name: GRIDOPERATOR
             description: Grid operator name
 
-      - name: dim_weather_final
+      - name: dim_weather
         description: Dimension table for weather data
         columns:
           - name: TIME

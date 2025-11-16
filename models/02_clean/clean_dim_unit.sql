@@ -18,4 +18,4 @@ select
     ISCROSSBORDERUNIT as is_cross_border_unit,
     FEEDINTYPE as feed_in_type,
     GRIDOPERATOR as grid_operator
-from {{ source('raw_power_generation', 'dim_power_generation_unit_final') }}
+from {{ source('raw_power_generation', 'dim_unit') }}
