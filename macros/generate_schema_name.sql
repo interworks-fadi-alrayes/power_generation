@@ -9,14 +9,14 @@
   {% if target_name == 'prod' %}
     {{ custom_schema_name }}
 
-  {% elif target_name == 'dev' %}
-    {{ custom_schema_name }}_{{ branch_clean | replace("-", "_") | replace("/", "_") | lower | trim }}
+  --{% elif target_name == 'dev' %}
+  --  {{ custom_schema_name }}_{{ branch_clean | replace("-", "_") | replace("/", "_") | lower | trim }}
 
   --{% elif target_name == 'ci' %}
   --  {{ custom_schema_name }}_{{ pr_number | lower | trim }}
 
   {% else %}
-    {{ custom_schema_name }}
+    {{ custom_schema_name }}_{{ branch_clean | replace("-", "_") | replace("/", "_") | lower | trim }}
 
   {% endif %}
 {% endmacro %}
