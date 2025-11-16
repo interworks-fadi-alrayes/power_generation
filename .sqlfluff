@@ -94,7 +94,7 @@ apply_dbt_builtins = True
 [sqlfluff:layout:type:comma]
 
 # Place commas at the beginning of lines.
-line_position = leading
+line_position = trailing
 
 [sqlfluff:rules]
 
