@@ -1,0 +1,61 @@
+name: Cleanup Dev Schemas on PR Merge
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  cleanup-schemas:
+    # Only run if PR was merged (not just closed)
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dbt
+        run: |
+          pip install dbt-snowflake
+
+      - name: Create dbt profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          cat << EOF > ~/.dbt/profiles.yml
+          default:
+            outputs:
+              dev:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                role: ${{ secrets.SNOWFLAKE_ROLE }}
+                database: power_generation_dev
+                warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+                schema: public
+                threads: 4
+            target: dev
+          EOF
+
+      - name: Extract branch name
+        id: extract_branch
+        run: |
+          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          echo "Cleaning up schemas for branch: $BRANCH_NAME"
+
+      - name: Run cleanup macro
+        run: |
+          dbt run-operation delete_dev_schemas_by_branch \
+            --args "{branch_name: '${{ steps.extract_branch.outputs.branch_name }}'}"
+
+      - name: Cleanup summary
+        run: |
+          echo "✅ Schema cleanup completed for branch: ${{ steps.extract_branch.outputs.branch_name }}"
