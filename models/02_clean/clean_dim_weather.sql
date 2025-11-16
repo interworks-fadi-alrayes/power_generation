@@ -15,4 +15,4 @@ select
     COUNTRY_ENGLISH as country_english,
     LATITUDE as latitude,
     LONGITUDE as longitude
-from {{ source('raw_power_generation', 'dim_weather_final') }}
+from {{ source('raw_power_generation', 'dim_weather') }}
