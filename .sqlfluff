@@ -93,8 +93,8 @@ apply_dbt_builtins = True
 
 [sqlfluff:layout:type:comma]
 
-# Place commas at the beginning of lines.
-line_position = leading
+# Place commas at the end of lines (more readable and standard).
+line_position = trailing
 
 [sqlfluff:rules]
 
