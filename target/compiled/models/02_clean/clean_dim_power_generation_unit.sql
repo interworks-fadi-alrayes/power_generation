@@ -1,0 +1,23 @@
+
+
+select
+    POWERGENERATIONUNITID as power_generation_unit_id,
+    UNITNAME as unit_name,
+    OPERATOR as operator,
+    UNITSTREET as unit_street,
+    UNITHOUSENUMBER as unit_house_number,
+    UNITPOSTALCODE as unit_postal_code,
+    UNITCITY as unit_city,
+    UNITSTATE as unit_state,
+    ENERGYSOURCE as energy_source,
+    ISSTORAGE as is_storage,
+    VOLTAGELEVEL as voltage_level,
+    PLANTSTATUS as plant_status,
+    COMMISSIONINGYEAR as commissioning_year,
+    DECOMMISSIONINGYEAR as decommissioning_year,
+    GROSSCAPACITYMW as gross_capacity_mw,
+    NETELECTRICALCAPACITYMW as net_electrical_capacity_mw,
+    ISCROSSBORDERUNIT as is_cross_border_unit,
+    FEEDINTYPE as feed_in_type,
+    GRIDOPERATOR as grid_operator
+from SNOWFLAKE_LEARNING_DB.raw_power_generation.dim_power_generation_unit_final
