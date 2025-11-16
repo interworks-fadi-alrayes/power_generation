@@ -18,29 +18,29 @@ fact_parsed as (
 
         -- Parse start_date from DD.MM.YYYY HH:MM format
         start_date,
-        strptime(start_date, '%d.%m.%Y %H:%M') as start_datetime,
+        to_timestamp(start_date, 'DD.MM.YYYY HH24:MI') as start_datetime,
 
         -- Parse end_date from DD.MM.YYYY HH:MM format
         end_date,
-        strptime(end_date, '%d.%m.%Y %H:%M') as end_datetime,
+        to_timestamp(end_date, 'DD.MM.YYYY HH24:MI') as end_datetime,
 
         -- Extract date components from start_date
-        cast(strftime(strptime(start_date, '%d.%m.%Y %H:%M'), '%Y') as integer) as start_year,
-        cast(strftime(strptime(start_date, '%d.%m.%Y %H:%M'), '%m') as integer) as start_month,
-        cast(strftime(strptime(start_date, '%d.%m.%Y %H:%M'), '%d') as integer) as start_day,
-        cast(strftime(strptime(start_date, '%d.%m.%Y %H:%M'), '%H') as integer) as start_hour,
-        cast(strftime(strptime(start_date, '%d.%m.%Y %H:%M'), '%M') as integer) as start_minute,
-        strftime(strptime(start_date, '%d.%m.%Y %H:%M'), '%Y-%m-%d') as start_date_only,
+        year(to_timestamp(start_date, 'DD.MM.YYYY HH24:MI')) as start_year,
+        month(to_timestamp(start_date, 'DD.MM.YYYY HH24:MI')) as start_month,
+        day(to_timestamp(start_date, 'DD.MM.YYYY HH24:MI')) as start_day,
+        hour(to_timestamp(start_date, 'DD.MM.YYYY HH24:MI')) as start_hour,
+        minute(to_timestamp(start_date, 'DD.MM.YYYY HH24:MI')) as start_minute,
+        to_date(to_timestamp(start_date, 'DD.MM.YYYY HH24:MI')) as start_date_only,
 
         -- Extract date components from end_date
-        cast(strftime(strptime(end_date, '%d.%m.%Y %H:%M'), '%Y') as integer) as end_year,
-        cast(strftime(strptime(end_date, '%d.%m.%Y %H:%M'), '%m') as integer) as end_month,
-        cast(strftime(strptime(end_date, '%d.%m.%Y %H:%M'), '%d') as integer) as end_day,
-        cast(strftime(strptime(end_date, '%d.%m.%Y %H:%M'), '%H') as integer) as end_hour,
-        cast(strftime(strptime(end_date, '%d.%m.%Y %H:%M'), '%M') as integer) as end_minute,
+        year(to_timestamp(end_date, 'DD.MM.YYYY HH24:MI')) as end_year,
+        month(to_timestamp(end_date, 'DD.MM.YYYY HH24:MI')) as end_month,
+        day(to_timestamp(end_date, 'DD.MM.YYYY HH24:MI')) as end_day,
+        hour(to_timestamp(end_date, 'DD.MM.YYYY HH24:MI')) as end_hour,
+        minute(to_timestamp(end_date, 'DD.MM.YYYY HH24:MI')) as end_minute,
 
         -- Calculate duration in hours
-        extract(epoch from (strptime(end_date, '%d.%m.%Y %H:%M') - strptime(start_date, '%d.%m.%Y %H:%M'))) / 3600 as duration_hours
+        datediff(hour, to_timestamp(start_date, 'DD.MM.YYYY HH24:MI'), to_timestamp(end_date, 'DD.MM.YYYY HH24:MI')) as duration_hours
 
     from fact
 ),
@@ -49,14 +49,14 @@ weather_parsed as (
     select
         postal_code,
         time,
-        cast(time as timestamp) as weather_datetime,
+        to_timestamp(time) as weather_datetime,
 
         -- Extract date components
-        cast(strftime(cast(time as timestamp), '%Y') as integer) as weather_year,
-        cast(strftime(cast(time as timestamp), '%m') as integer) as weather_month,
-        cast(strftime(cast(time as timestamp), '%d') as integer) as weather_day,
-        cast(strftime(cast(time as timestamp), '%H') as integer) as weather_hour,
-        strftime(cast(time as timestamp), '%Y-%m-%d') as weather_date_only,
+        year(to_timestamp(time)) as weather_year,
+        month(to_timestamp(time)) as weather_month,
+        day(to_timestamp(time)) as weather_day,
+        hour(to_timestamp(time)) as weather_hour,
+        to_date(to_timestamp(time)) as weather_date_only,
 
         -- Weather measurements
         temperature_2m_c,
