@@ -3,8 +3,10 @@
 
     {% if target.name == 'prod' %}
         {{ 'power_generation_prod' }}
-    {% elif target.name == 'ci' %}
-        {{ 'power_generation_ci' }}
+
+    {% elif target.name == 'int' %}
+        {{ 'power_generation_int' }}
+        
     {% else %}
         {{ 'power_generation_dev' }}
     {% endif %}
