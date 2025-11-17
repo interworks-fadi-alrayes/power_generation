@@ -194,8 +194,6 @@ semantic_models:
         label: "Avg Capacity Utilization (%)"
         agg: avg
         expr: avg_capacity_utilization_percent
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['efficiency_metrics', 'utilization', 'key_metric']
 
@@ -204,8 +202,6 @@ semantic_models:
         label: "Max Capacity Utilization (%)"
         agg: max
         expr: max_capacity_utilization_percent
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['efficiency_metrics', 'utilization']
 
@@ -215,8 +211,6 @@ semantic_models:
         label: "Avg Temperature (°C)"
         agg: avg
         expr: avg_temperature_2m_c
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['weather_metrics', 'temperature']
 
@@ -242,8 +236,6 @@ semantic_models:
         label: "Avg Wind Speed 10m (m/s)"
         agg: avg
         expr: avg_wind_speed_10m_mps
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['weather_metrics', 'wind']
 
@@ -252,8 +244,6 @@ semantic_models:
         label: "Avg Wind Speed 80m (m/s)"
         agg: avg
         expr: avg_wind_speed_80m_mps
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['weather_metrics', 'wind']
 
@@ -263,8 +253,6 @@ semantic_models:
         label: "Avg Shortwave Radiation (W/m²)"
         agg: avg
         expr: avg_shortwave_radiation_wpm2
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['weather_metrics', 'solar']
 
@@ -273,8 +261,6 @@ semantic_models:
         label: "Avg Direct Radiation (W/m²)"
         agg: avg
         expr: avg_direct_radiation_wpm2
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['weather_metrics', 'solar']
 
@@ -283,8 +269,6 @@ semantic_models:
         label: "Avg Diffuse Radiation (W/m²)"
         agg: avg
         expr: avg_diffuse_radiation_wpm2
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['weather_metrics', 'solar']
 
@@ -319,8 +303,6 @@ semantic_models:
         label: "Avg Cloud Cover (%)"
         agg: avg
         expr: avg_cloud_cover_percent
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['weather_metrics', 'atmospheric']
 
@@ -329,8 +311,6 @@ semantic_models:
         label: "Avg Pressure (hPa)"
         agg: avg
         expr: avg_pressure_msl_hpa
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['weather_metrics', 'atmospheric']
 
@@ -349,8 +329,6 @@ semantic_models:
         label: "Load Factor (%)"
         agg: avg
         expr: (total_energy_mwh / (net_electrical_capacity_mw * 24)) * 100
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['efficiency_metrics', 'key_metric']
 
@@ -359,8 +337,6 @@ semantic_models:
         label: "Operational Availability (%)"
         agg: avg
         expr: (total_duration_hours / 24) * 100
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['efficiency_metrics', 'availability']
 
@@ -369,8 +345,6 @@ semantic_models:
         label: "Energy per MW Capacity (MWh/MW)"
         agg: avg
         expr: total_energy_mwh / nullif(net_electrical_capacity_mw, 0)
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['efficiency_metrics']
 
@@ -410,7 +384,5 @@ semantic_models:
               (case when energy_source in ('Water', 'Biomass', 'Waste') then 100.0 else 0.0 end)
             else 0
           end
-        non_additive_dimension:
-          name: generation_date
         meta:
           tags: ['efficiency_metrics', 'sustainability', 'key_metric']
