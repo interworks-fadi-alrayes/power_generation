@@ -136,4 +136,3 @@ semantic_models:
     agg: count_distinct
     create_metric: true
     expr: power_generation_unit_id
-  primary_entity: generation
