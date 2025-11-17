@@ -1,8 +1,8 @@
 version: 2
 
 sources:
-  - name: raw_power_generation
-    description: Raw power generation data sources
+  - name: smard
+    description: Raw power generation data sources from smard
     schema: O1_raw
     tables:
       - name: fact_power_generation
@@ -61,6 +61,10 @@ sources:
           - name: GRIDOPERATOR
             description: Grid operator name
 
+  - name: meteostat
+    description: Raw weather data from meteostat
+    schema: O1_raw
+    tables:
       - name: dim_weather
         description: Dimension table for weather data
         columns:
@@ -69,19 +73,19 @@ sources:
           - name: TEMPERATURE_2M_C
             description: Temperature at 2m in Celsius
           - name: WIND_SPEED_10M_M_S
-            description: Wind speed at 10m in m/s
+            description: Wind speed at 10m in meters per second (renamed to wind_speed_10m_mps)
           - name: WIND_SPEED_80M_M_S
-            description: Wind speed at 80m in m/s
+            description: Wind speed at 80m in meters per second (renamed to wind_speed_80m_mps)
           - name: SHORTWAVE_RADIATION_W_M2
-            description: Shortwave radiation in W/m²
+            description: Shortwave radiation in watts per m² (renamed to shortwave_radiation_wpm2)
           - name: DIRECT_RADIATION_W_M2
-            description: Direct radiation in W/m²
+            description: Direct radiation in watts per m² (renamed to direct_radiation_wpm2)
           - name: DIFFUSE_RADIATION_W_M2
-            description: Diffuse radiation in W/m²
+            description: Diffuse radiation in watts per m² (renamed to diffuse_radiation_wpm2)
           - name: PRECIPITATION_MM
             description: Precipitation in mm
           - name: CLOUDCOVER
-            description: Cloud cover percentage
+            description: Cloud cover percentage (renamed to cloud_cover_percent)
           - name: PRESSURE_MSL_HPA
             description: Mean sea level pressure in hPa
           - name: RAIN_MM

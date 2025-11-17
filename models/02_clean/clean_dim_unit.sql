@@ -1,7 +1,7 @@
 select
   powergenerationunitid as power_generation_unit_id,
   unitname as unit_name,
-  operator,
+  operator as unit_operator,
   unitstreet as unit_street,
   unithousenumber as unit_house_number,
   unitpostalcode as unit_postal_code,
@@ -18,4 +18,4 @@ select
   iscrossborderunit as is_cross_border_unit,
   feedintype as feed_in_type,
   gridoperator as grid_operator
-from {{ source('raw_power_generation', 'dim_unit') }}
+from {{ source('smard', 'dim_unit') }}
