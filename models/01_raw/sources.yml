@@ -81,7 +81,7 @@ sources:
           - name: PRECIPITATION_MM
             description: Precipitation in mm
           - name: CLOUDCOVER
-            description: Cloud cover percentage (renamed to cloud_cover_pct)
+            description: Cloud cover percentage (renamed to cloud_cover_percent)
           - name: PRESSURE_MSL_HPA
             description: Mean sea level pressure in hPa
           - name: RAIN_MM

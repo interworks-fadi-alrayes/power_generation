@@ -7,7 +7,7 @@ select
   direct_radiation_w_m2 as direct_radiation_wpm2,
   diffuse_radiation_w_m2 as diffuse_radiation_wpm2,
   precipitation_mm,
-  cloudcover as cloud_cover_pct,
+  cloudcover as cloud_cover_percent,
   pressure_msl_hpa,
   rain_mm,
   snowfall_cm,

@@ -60,7 +60,7 @@ select
   sum(rain_mm) as total_rain_mm,
   sum(snowfall_cm) as total_snowfall_cm,
 
-  avg(cloud_cover_pct) as avg_cloud_cover_pct,
+  avg(cloud_cover_percent) as avg_cloud_cover_percent,
   avg(pressure_msl_hpa) as avg_pressure_msl_hpa,
 
   -- Location
