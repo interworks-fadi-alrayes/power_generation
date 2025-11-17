@@ -8,9 +8,12 @@ models:
       from 2023-01-01 to 2026-12-31 for time-based metric calculations.
     config:
       materialized: table
+    time_spine:
+      standard_granularity_column: date_day
     columns:
       - name: date_day
         description: Date at daily granularity
+        granularity: day
         tests:
           - not_null
           - unique
