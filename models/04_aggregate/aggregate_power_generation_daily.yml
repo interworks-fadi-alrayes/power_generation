@@ -14,16 +14,6 @@ models:
         tests:
           - not_null
 
-      - name: start_year
-        description: Year of generation
-        tests:
-          - not_null
-
-      - name: start_month
-        description: Month of generation (1-12)
-        tests:
-          - not_null
-
       - name: number_of_readings
         description: Number of hourly readings for the day
         tests:

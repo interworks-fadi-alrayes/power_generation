@@ -7,9 +7,6 @@ with joined as (
 select
   -- Date dimension
   start_date_only as generation_date,
-  start_year,
-  start_month,
-  start_day,
 
   -- Unit dimension
   power_generation_unit_id,
@@ -17,10 +14,8 @@ select
   operator,
   unit_city,
   unit_state,
-  unit_postal_code,
   energy_source,
   plant_status,
-  voltage_level,
   is_storage,
 
   -- Unit capacity (takes latest value per day)
@@ -38,7 +33,6 @@ select
 
   -- Capacity utilization
   avg(capacity_utilization_percent) as avg_capacity_utilization_percent,
-  min(capacity_utilization_percent) as min_capacity_utilization_percent,
   max(capacity_utilization_percent) as max_capacity_utilization_percent,
 
   -- Weather aggregations (daily averages)
@@ -47,10 +41,7 @@ select
   max(temperature_2m_c) as max_temperature_2m_c,
 
   avg(wind_speed_10m_mps) as avg_wind_speed_10m_mps,
-  max(wind_speed_10m_mps) as max_wind_speed_10m_mps,
-
   avg(wind_speed_80m_mps) as avg_wind_speed_80m_mps,
-  max(wind_speed_80m_mps) as max_wind_speed_80m_mps,
 
   avg(shortwave_radiation_wpm2) as avg_shortwave_radiation_wpm2,
   avg(direct_radiation_wpm2) as avg_direct_radiation_wpm2,
@@ -61,26 +52,16 @@ select
   sum(snowfall_cm) as total_snowfall_cm,
 
   avg(cloud_cover_percent) as avg_cloud_cover_percent,
-  avg(pressure_msl_hpa) as avg_pressure_msl_hpa,
-
-  -- Location
-  max(country_english) as country,
-  max(latitude) as latitude,
-  max(longitude) as longitude
+  avg(pressure_msl_hpa) as avg_pressure_msl_hpa
 
 from joined
 group by
   start_date_only,
-  start_year,
-  start_month,
-  start_day,
   power_generation_unit_id,
   unit_name,
   operator,
   unit_city,
   unit_state,
-  unit_postal_code,
   energy_source,
   plant_status,
-  voltage_level,
   is_storage
