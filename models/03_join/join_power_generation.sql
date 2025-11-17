@@ -162,7 +162,7 @@ select
   case
     when u.net_electrical_capacity_mw > 0
       then (fp.value_mw / u.net_electrical_capacity_mw) * 100
-  end as capacity_utilization_pct
+  end as capacity_utilization_percent
 
 from fact_parsed as fp
 left join units as u

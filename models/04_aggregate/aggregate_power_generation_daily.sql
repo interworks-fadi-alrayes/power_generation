@@ -37,9 +37,9 @@ select
   stddev(value_mw) as stddev_power_mw,
 
   -- Capacity utilization
-  avg(capacity_utilization_pct) as avg_capacity_utilization_pct,
-  min(capacity_utilization_pct) as min_capacity_utilization_pct,
-  max(capacity_utilization_pct) as max_capacity_utilization_pct,
+  avg(capacity_utilization_percent) as avg_capacity_utilization_percent,
+  min(capacity_utilization_percent) as min_capacity_utilization_percent,
+  max(capacity_utilization_percent) as max_capacity_utilization_percent,
 
   -- Weather aggregations (daily averages)
   avg(temperature_2m_c) as avg_temperature_2m_c,
