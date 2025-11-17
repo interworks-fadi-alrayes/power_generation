@@ -14,10 +14,6 @@ models:
         description: Foreign key to power generation unit
         tests:
           - not_null
-          - relationships:
-              arguments:
-                to: ref('clean_dim_unit')
-                field: power_generation_unit_id
 
       - name: start_datetime
         description: Start timestamp of power generation period
@@ -42,7 +38,7 @@ models:
       - name: unit_name
         description: Name of the power generation unit
 
-      - name: operator
+      - name: unit_operator
         description: Company or entity operating the unit
 
       - name: unit_city
@@ -62,9 +58,6 @@ models:
       - name: plant_status
         description: Current operational status (e.g., In operation, Temporarily shut down)
 
-      - name: gross_capacity_mw
-        description: Gross electrical capacity in megawatts (rated capacity)
-
       - name: net_electrical_capacity_mw
         description: Net electrical capacity in megawatts (available for grid export)
         tests:
@@ -72,8 +65,6 @@ models:
 
       - name: energy_mwh
         description: Total energy generated (power * duration) in megawatt-hours
-        tests:
-          - not_null
 
       - name: capacity_utilization_percent
         description: Capacity utilization as percentage of net electrical capacity

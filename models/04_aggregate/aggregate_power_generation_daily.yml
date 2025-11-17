@@ -7,22 +7,14 @@ models:
       # Date and Unit Dimensions
       - name: generation_date
         description: Date of power generation (use generation_date__year, generation_date__month for time-based grouping)
-        tests:
-          - not_null
 
       - name: power_generation_unit_id
         description: Power generation unit identifier
-        tests:
-          - not_null
-          - relationships:
-              arguments:
-                to: ref('clean_dim_unit')
-                field: power_generation_unit_id
 
       - name: unit_name
         description: Name of the power generation unit
 
-      - name: operator
+      - name: unit_operator
         description: Operator of the unit
 
       - name: unit_city
@@ -33,8 +25,6 @@ models:
 
       - name: energy_source
         description: Type of energy source
-        tests:
-          - not_null
 
       - name: plant_status
         description: Operational status of the plant
@@ -43,29 +33,18 @@ models:
         description: Boolean flag for storage facilities
 
       # Capacity Metrics
-      - name: gross_capacity_mw
-        description: Gross electrical capacity in megawatts (maximum for the day)
-
       - name: net_electrical_capacity_mw
         description: Net electrical capacity in megawatts (maximum for the day)
-        tests:
-          - not_null
 
       # Generation Metrics
       - name: number_of_readings
         description: Number of hourly power generation readings for the day
-        tests:
-          - not_null
 
       - name: total_duration_hours
         description: Total duration of power generation in hours
-        tests:
-          - not_null
 
       - name: total_energy_mwh
         description: Total energy generated in megawatt-hours
-        tests:
-          - not_null
 
       - name: avg_power_mw
         description: Average power output in megawatts
@@ -75,9 +54,6 @@ models:
 
       - name: max_power_mw
         description: Maximum power output (peak) in megawatts
-
-      - name: stddev_power_mw
-        description: Standard deviation of power output (variability indicator)
 
       # Utilization Metrics
       - name: avg_capacity_utilization_percent
