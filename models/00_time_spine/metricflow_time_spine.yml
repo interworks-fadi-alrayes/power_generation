@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: metricflow_time_spine
+    description: >
+      Time spine model for MetricFlow semantic layer.
+      Contains a continuous sequence of dates at daily granularity
+      from 2023-01-01 to 2026-12-31 for time-based metric calculations.
+    config:
+      materialized: table
+    columns:
+      - name: date_day
+        description: Date at daily granularity
+        tests:
+          - not_null
+          - unique

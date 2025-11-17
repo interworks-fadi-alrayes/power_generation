@@ -42,6 +42,9 @@ models:
   power_generation:
     # Applies to all files under models/power_generation/
     +materialized: view
+    00_time_spine:
+      +schema: O0_UTILITY
+      +materialized: table
     02_clean:
       +schema: O2_CLEAN
     03_join:
