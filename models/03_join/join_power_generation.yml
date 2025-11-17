@@ -24,12 +24,7 @@ models:
         tests:
           - not_null
 
-      - name: end_datetime
-        description: End timestamp of power generation period
-        tests:
-          - not_null
-
-      - name: start_date_only
+      - name: start_date
         description: Start date (without time) for daily aggregation
         tests:
           - not_null
