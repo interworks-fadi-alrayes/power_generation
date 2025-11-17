@@ -59,7 +59,7 @@ fact_parsed as (
 weather_parsed as (
   select
     postal_code,
-    time,
+    timestamp_cet,
     temperature_2m_c,
 
     -- Extract date components
@@ -78,12 +78,12 @@ weather_parsed as (
     country_english,
     latitude,
     longitude,
-    to_timestamp(time) as weather_datetime,
-    year(to_timestamp(time)) as weather_year,
-    month(to_timestamp(time)) as weather_month,
-    day(to_timestamp(time)) as weather_day,
-    hour(to_timestamp(time)) as weather_hour,
-    to_date(to_timestamp(time)) as weather_date_only
+    to_timestamp(timestamp_cet) as weather_datetime,
+    year(to_timestamp(timestamp_cet)) as weather_year,
+    month(to_timestamp(timestamp_cet)) as weather_month,
+    day(to_timestamp(timestamp_cet)) as weather_day,
+    hour(to_timestamp(timestamp_cet)) as weather_hour,
+    to_date(to_timestamp(timestamp_cet)) as weather_date_only
 
   from weather
 )

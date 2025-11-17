@@ -1,5 +1,5 @@
 select
-  time,
+  "TIME" as timestamp_cet,
   temperature_2m_c,
   wind_speed_10m_m_s,
   wind_speed_80m_m_s,
