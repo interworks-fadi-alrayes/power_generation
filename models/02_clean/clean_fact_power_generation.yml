@@ -25,9 +25,9 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('clean_dim_unit')
-              field: power_generation_unit_id
-
+              arguments:
+                to: ref('clean_dim_unit')
+                field: power_generation_unit_id
       - name: value_mw
         description: Power generated in megawatts
         tests:

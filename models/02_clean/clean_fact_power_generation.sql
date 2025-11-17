@@ -5,4 +5,3 @@ select
   power_generationunitid as power_generation_unit_id,
   valuemw as value_mw
 from {{ source('raw_power_generation', 'fact_power_generation') }}
-qualify row_number() over (partition by powergenerationid order by startdate) = 1

@@ -20,7 +20,8 @@ models:
           - accepted_values:
               config:
                 quote: false
-              values: ['Battery Storage', 'Biomass', 'Hard Coal', 'Heat', 'Lignite', 'Mine Gas', 'Mineral Oil Products', 'Natural Gas', 'Nuclear Energy', 'Other Non-Renewable Energy Carriers', 'Pumped Storage', 'Waste', 'Water']
+              arguments:
+                values: ['Battery Storage', 'Biomass', 'Hard Coal', 'Heat', 'Lignite', 'Mine Gas', 'Mineral Oil Products', 'Natural Gas', 'Nuclear Energy', 'Other Non-Renewable Energy Carriers', 'Pumped Storage', 'Waste', 'Water']
 
       - name: plant_status
         description: Current operational status of the plant (can be null)
@@ -28,7 +29,8 @@ models:
           - accepted_values:
               config:
                 quote: false
-              values: ['Capacity reserve', 'Grid reserve', 'In operation', 'Permanently shut down', 'Special grid equipment', 'Temporarily shut down']
+              arguments:
+                values: ['Capacity reserve', 'Grid reserve', 'In operation', 'Permanently shut down', 'Special grid equipment', 'Temporarily shut down']
 
       - name: net_electrical_capacity_mw
         description: Net electrical capacity in megawatts

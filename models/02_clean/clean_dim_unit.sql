@@ -19,4 +19,3 @@ select
   feedintype as feed_in_type,
   gridoperator as grid_operator
 from {{ source('raw_power_generation', 'dim_unit') }}
-qualify row_number() over (partition by powergenerationunitid order by unitname) = 1
