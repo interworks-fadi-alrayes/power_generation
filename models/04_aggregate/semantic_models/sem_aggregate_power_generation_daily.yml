@@ -1,6 +1,6 @@
 semantic_models:
 - name: aggregate_power_generation_daily
-  description: Daily aggregated power generation data with weather and location details.
+  description: Daily aggregated power generation data from German power plants with weather and location details. Data includes traditional and renewable energy sources across Germany.
   model: ref('aggregate_power_generation_daily')
   defaults:
     agg_time_dimension: generation_date
@@ -27,16 +27,20 @@ semantic_models:
     type: categorical
   - name: unit_state
     type: categorical
+    description: "German state (Bundesland) where the power generation unit is located. Examples: 'Bayern', 'Nordrhein-Westfalen', 'Baden-Württemberg', 'Niedersachsen'."
   - name: unit_postal_code
     type: categorical
   - name: energy_source
     type: categorical
+    description: "Type of energy source. Valid values: 'Battery Storage', 'Biomass', 'Hard Coal', 'Heat', 'Lignite', 'Mine Gas', 'Mineral Oil Products', 'Natural Gas', 'Nuclear Energy', 'Other Non-Renewable Energy Carriers', 'Pumped Storage', 'Waste', 'Water'. Note: This German dataset does not include 'Solar' or 'Wind' as separate categories."
   - name: plant_status
     type: categorical
+    description: "Current operational status of the plant. Valid values: 'Capacity reserve', 'Grid reserve', 'In operation', 'Permanently shut down', 'Special grid equipment', 'Temporarily shut down'. Can be null."
   - name: voltage_level
     type: categorical
   - name: is_storage
     type: categorical
+    description: "Boolean flag indicating if the unit is a storage facility (battery or pumped storage) vs a generation facility. Values: 'true' or 'false'."
   - name: country
     type: categorical
   - name: latitude
