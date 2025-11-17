@@ -12,7 +12,7 @@ select
   rain_mm,
   snowfall_cm,
   postal_code,
-  country_english,
+  country_english as country,
   latitude,
   longitude
 from {{ source('meteostat', 'dim_weather') }}
