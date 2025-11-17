@@ -12,6 +12,5 @@ with date_spine as (
   ) }}
 )
 
-select
-  date_day as date_day
+select date_day
 from date_spine
