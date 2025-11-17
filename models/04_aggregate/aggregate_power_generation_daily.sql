@@ -6,12 +6,12 @@ with joined as (
 
 select
   -- Date dimension
-  start_date_only as generation_date,
+  start_date as generation_date,
 
   -- Unit dimension
   power_generation_unit_id,
   unit_name,
-  operator,
+  unit_operator,
   unit_city,
   unit_state,
   energy_source,
@@ -19,17 +19,16 @@ select
   is_storage,
 
   -- Unit capacity (takes latest value per day)
-  max(gross_capacity_mw) as gross_capacity_mw,
   max(net_electrical_capacity_mw) as net_electrical_capacity_mw,
 
   -- Power generation aggregations
   count(*) as number_of_readings,
   sum(duration_hours) as total_duration_hours,
   sum(energy_mwh) as total_energy_mwh,
+
   avg(value_mw) as avg_power_mw,
   min(value_mw) as min_power_mw,
   max(value_mw) as max_power_mw,
-  stddev(value_mw) as stddev_power_mw,
 
   -- Capacity utilization
   avg(capacity_utilization_percent) as avg_capacity_utilization_percent,
@@ -56,10 +55,10 @@ select
 
 from joined
 group by
-  start_date_only,
+  start_date,
   power_generation_unit_id,
   unit_name,
-  operator,
+  unit_operator,
   unit_city,
   unit_state,
   energy_source,

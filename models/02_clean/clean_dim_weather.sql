@@ -1,5 +1,5 @@
 select
-  "TIME" as timestamp_cet,
+  to_timestamp("TIME") as weather_datetime,
   temperature_2m_c,
   wind_speed_10m_m_s as wind_speed_10m_mps,
   wind_speed_80m_m_s as wind_speed_80m_mps,
@@ -15,4 +15,4 @@ select
   country_english,
   latitude,
   longitude
-from {{ source('raw_power_generation', 'dim_weather') }}
+from {{ source('meteostat', 'dim_weather') }}

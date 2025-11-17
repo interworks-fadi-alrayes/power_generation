@@ -1,8 +1,8 @@
 version: 2
 
 sources:
-  - name: raw_power_generation
-    description: Raw power generation data sources
+  - name: smard
+    description: Raw power generation data sources from smard
     schema: O1_raw
     tables:
       - name: fact_power_generation
@@ -61,6 +61,10 @@ sources:
           - name: GRIDOPERATOR
             description: Grid operator name
 
+  - name: meteostat
+    description: Raw weather data from meteostat
+    schema: O1_raw
+    tables:
       - name: dim_weather
         description: Dimension table for weather data
         columns:
