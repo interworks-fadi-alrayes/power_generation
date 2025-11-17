@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: clean_dim_weather
+    description: Cleaned weather dimension table with standardized column names and measurements
+    constraints:
+      - type: primary_key
+        columns: [weather_datetime, postal_code]
+    columns:
+      - name: weather_datetime
+        description: Timestamp of weather observation (converted from TIME)
+        tests:
+          - not_null
+
+      - name: postal_code
+        description: Postal code of the weather station location
+        tests:
+          - not_null
+
+      - name: temperature_2m_c
+        description: Temperature at 2 meters above ground in Celsius
+
+      - name: wind_speed_10m_mps
+        description: Wind speed at 10 meters height in meters per second
+
+      - name: wind_speed_80m_mps
+        description: Wind speed at 80 meters height in meters per second (typical wind turbine height)
+
+      - name: shortwave_radiation_wpm2
+        description: Total shortwave solar radiation in watts per square meter
+
+      - name: direct_radiation_wpm2
+        description: Direct solar radiation in watts per square meter (beam radiation)
+
+      - name: diffuse_radiation_wpm2
+        description: Diffuse solar radiation in watts per square meter (scattered radiation)
+
+      - name: precipitation_mm
+        description: Total precipitation (rain + snow water equivalent) in millimeters
+
+      - name: cloud_cover_percent
+        description: Cloud cover as percentage (0% = clear sky, 100% = completely overcast)
+
+      - name: pressure_msl_hpa
+        description: Atmospheric pressure at mean sea level in hectopascals
+
+      - name: rain_mm
+        description: Rainfall amount in millimeters
+
+      - name: snowfall_cm
+        description: Snowfall amount in centimeters
+
+      - name: country
+        description: Country name
+
+      - name: latitude
+        description: Latitude coordinate of the weather station
+
+      - name: longitude
+        description: Longitude coordinate of the weather station

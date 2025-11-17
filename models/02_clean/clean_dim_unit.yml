@@ -1,0 +1,79 @@
+version: 2
+
+models:
+  - name: clean_dim_unit
+    description: Cleaned dimension table for power generation units with standardized column names
+    constraints:
+      - type: primary_key
+        columns: [power_generation_unit_id]
+    columns:
+      - name: power_generation_unit_id
+        description: Unique identifier for power generation unit (primary key)
+        tests:
+          - unique
+          - not_null
+
+      - name: unit_name
+        description: Name of the power generation unit/facility
+
+      - name: unit_operator
+        description: Company or entity operating the power generation unit
+
+      - name: unit_street
+        description: Street address of the power generation unit
+
+      - name: unit_house_number
+        description: House number of the unit's address
+
+      - name: unit_postal_code
+        description: Postal code where the unit is located
+
+      - name: unit_city
+        description: City where the power generation unit is located
+
+      - name: unit_state
+        description: German state (Bundesland) where the unit is located
+
+      - name: energy_source
+        description: Type of energy source used for power generation
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Battery Storage', 'Biomass', 'Hard Coal', 'Heat', 'Lignite', 'Mine Gas', 'Mineral Oil Products', 'Natural Gas', 'Nuclear Energy', 'Other Non-Renewable Energy Carriers', 'Pumped Storage', 'Waste', 'Water']
+
+      - name: is_storage
+        description: Boolean flag indicating if the unit is a storage facility (true/false)
+
+      - name: voltage_level
+        description: Voltage level at which the unit connects to the grid
+
+      - name: plant_status
+        description: Current operational status of the plant (can be null)
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['Capacity reserve', 'Grid reserve', 'In operation', 'Permanently shut down', 'Special grid equipment', 'Temporarily shut down']
+
+      - name: commissioning_year
+        description: Year when the power generation unit was commissioned
+
+      - name: decommissioning_year
+        description: Year when the unit was or will be decommissioned (null if still active)
+
+      - name: gross_capacity_mw
+        description: Gross electrical capacity in megawatts (rated capacity including auxiliary consumption)
+
+      - name: net_electrical_capacity_mw
+        description: Net electrical capacity in megawatts (capacity available for grid export)
+        tests:
+          - not_null
+
+      - name: is_cross_border_unit
+        description: Boolean flag indicating if this is a cross-border unit
+
+      - name: feed_in_type
+        description: Type of feed-in connection to the grid
+
+      - name: grid_operator
+        description: Name of the grid operator managing this unit's connection

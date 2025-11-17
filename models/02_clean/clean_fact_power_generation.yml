@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: clean_fact_power_generation
+    description: Cleaned power generation fact table with standardized column names. Contains hourly power generation readings.
+    constraints:
+      - type: primary_key
+        columns: [power_generation_id]
+    columns:
+      - name: power_generation_id
+        description: Unique identifier for each power generation record (primary key)
+        tests:
+          - unique
+          - not_null
+
+      - name: start_date
+        description: Start date and time of generation period in DD.MM.YYYY HH24:MI format
+        tests:
+          - not_null
+
+      - name: end_date
+        description: End date and time of generation period in DD.MM.YYYY HH24:MI format
+        tests:
+          - not_null
+
+      - name: power_generation_unit_id
+        description: Foreign key to power generation unit dimension
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('clean_dim_unit')
+                field: power_generation_unit_id
+
+      - name: value_mw
+        description: Power output in megawatts during this period
+        tests:
+          - not_null
