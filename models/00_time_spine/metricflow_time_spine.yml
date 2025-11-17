@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: metricflow_time_spine
+    description: Date spine table with daily granularity for MetricFlow semantic layer
+    columns:
+      - name: date_day
+        description: Calendar date at daily granularity
+        tests:
+          - not_null
+          - unique
