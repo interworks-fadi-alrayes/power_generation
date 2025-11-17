@@ -1,45 +1,33 @@
+version: 2
+
 models:
-- name: clean_dim_unit
-  description: This model provides a cleaned and standardized view of power generation
-    units, including details such as location, operator, energy source, and capacity.
-    It is used to facilitate analysis of power generation infrastructure and operations.
-  columns:
-  - name: power_generation_unit_id
-    description: A unique identifier for each power generation unit.
-  - name: unit_name
-    description: The name of the power generation unit.
-  - name: operator
-    description: The entity responsible for operating the power generation unit.
-  - name: unit_street
-    description: The street address where the power generation unit is located.
-  - name: unit_house_number
-    description: The house number of the power generation unit's address.
-  - name: unit_postal_code
-    description: The postal code of the power generation unit's location.
-  - name: unit_city
-    description: The city where the power generation unit is located.
-  - name: unit_state
-    description: The state where the power generation unit is located.
-  - name: energy_source
-    description: The type of energy source used by the power generation unit.
-  - name: is_storage
-    description: Indicates whether the unit has storage capabilities.
-  - name: voltage_level
-    description: The voltage level at which the power generation unit operates.
-  - name: plant_status
-    description: The current operational status of the power generation unit.
-  - name: commissioning_year
-    description: The year the power generation unit was commissioned.
-  - name: decommissioning_year
-    description: The year the power generation unit was decommissioned, if applicable.
-  - name: gross_capacity_mw
-    description: The total gross capacity of the power generation unit in megawatts.
-  - name: net_electrical_capacity_mw
-    description: The net electrical capacity of the power generation unit in megawatts.
-  - name: is_cross_border_unit
-    description: Indicates whether the power generation unit operates across borders.
-  - name: feed_in_type
-    description: The type of feed-in tariff or mechanism applicable to the power generation
-      unit.
-  - name: grid_operator
-    description: The operator of the grid to which the power generation unit is connected.
+  - name: clean_dim_unit
+    description: Cleaned dimension table for power generation units
+    columns:
+      - name: power_generation_unit_id
+        description: Unique identifier for power generation unit
+        tests:
+          - unique
+          - not_null
+
+      - name: unit_name
+        description: Name of the power generation unit
+
+      - name: energy_source
+        description: Type of energy source
+        tests:
+          - accepted_values:
+              values: ['Solar', 'Wind', 'Natural Gas', 'Hard Coal', 'Lignite', 'Water', 'Biomass', 'Nuclear', 'Oil', 'Other']
+              quote: false
+
+      - name: plant_status
+        description: Current operational status of the plant
+        tests:
+          - accepted_values:
+              values: ['In operation', 'Permanently shut down', 'Temporarily shut down']
+              quote: false
+
+      - name: net_electrical_capacity_mw
+        description: Net electrical capacity in megawatts
+        tests:
+          - not_null

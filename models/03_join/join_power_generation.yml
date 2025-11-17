@@ -1,123 +1,44 @@
+version: 2
+
 models:
-- name: join_power_generation
-  description: This model integrates power generation data with unit and weather information
-    to provide a comprehensive view of power generation activities. It includes temporal
-    data, unit specifications, and weather conditions to analyze power generation
-    performance and capacity utilization.
-  columns:
-  - name: power_generation_id
-    description: Unique identifier for each power generation record.
-  - name: power_generation_unit_id
-    description: Identifier for the unit where power is generated.
-  - name: unit_name
-    description: Name of the power generation unit.
-  - name: operator
-    description: Operator responsible for the power generation unit.
-  - name: unit_street
-    description: Street address of the power generation unit.
-  - name: unit_house_number
-    description: House number of the power generation unit.
-  - name: unit_postal_code
-    description: Postal code of the power generation unit.
-  - name: unit_city
-    description: City where the power generation unit is located.
-  - name: unit_state
-    description: State where the power generation unit is located.
-  - name: energy_source
-    description: Type of energy source used by the unit.
-  - name: is_storage
-    description: Indicates if the unit is used for energy storage.
-  - name: voltage_level
-    description: Voltage level at which the unit operates.
-  - name: plant_status
-    description: Current operational status of the power plant.
-  - name: commissioning_year
-    description: Year when the unit was commissioned.
-  - name: decommissioning_year
-    description: Year when the unit was decommissioned, if applicable.
-  - name: gross_capacity_mw
-    description: Gross capacity of the unit in megawatts.
-  - name: net_electrical_capacity_mw
-    description: Net electrical capacity of the unit in megawatts.
-  - name: is_cross_border_unit
-    description: Indicates if the unit operates across borders.
-  - name: feed_in_type
-    description: Type of feed-in used by the unit.
-  - name: grid_operator
-    description: Operator of the grid to which the unit is connected.
-  - name: start_date
-    description: Start date of the power generation period.
-  - name: start_datetime
-    description: Start date and time of the power generation period.
-  - name: start_year
-    description: Year extracted from the start date.
-  - name: start_month
-    description: Month extracted from the start date.
-  - name: start_day
-    description: Day extracted from the start date.
-  - name: start_hour
-    description: Hour extracted from the start date.
-  - name: start_minute
-    description: Minute extracted from the start date.
-  - name: start_date_only
-    description: Date extracted from the start date without time.
-  - name: end_date
-    description: End date of the power generation period.
-  - name: end_datetime
-    description: End date and time of the power generation period.
-  - name: end_year
-    description: Year extracted from the end date.
-  - name: end_month
-    description: Month extracted from the end date.
-  - name: end_day
-    description: Day extracted from the end date.
-  - name: end_hour
-    description: Hour extracted from the end date.
-  - name: end_minute
-    description: Minute extracted from the end date.
-  - name: duration_hours
-    description: Duration of the power generation period in hours.
-  - name: value_mw
-    description: Power generation value in megawatts.
-  - name: weather_datetime
-    description: Date and time of the weather observation.
-  - name: weather_year
-    description: Year extracted from the weather observation date.
-  - name: weather_month
-    description: Month extracted from the weather observation date.
-  - name: weather_day
-    description: Day extracted from the weather observation date.
-  - name: weather_hour
-    description: Hour extracted from the weather observation date.
-  - name: temperature_2m_c
-    description: Temperature at 2 meters above ground in Celsius.
-  - name: wind_speed_10m_mps
-    description: Wind speed at 10 meters above ground in meters per second.
-  - name: wind_speed_80m_mps
-    description: Wind speed at 80 meters above ground in meters per second.
-  - name: shortwave_radiation_wpm2
-    description: Shortwave radiation in watts per square meter.
-  - name: direct_radiation_wpm2
-    description: Direct radiation in watts per square meter.
-  - name: diffuse_radiation_wpm2
-    description: Diffuse radiation in watts per square meter.
-  - name: precipitation_mm
-    description: Precipitation in millimeters.
-  - name: cloud_cover_percent
-    description: Cloud cover percentage.
-  - name: pressure_msl_hpa
-    description: Pressure at mean sea level in hectopascals.
-  - name: rain_mm
-    description: Rainfall in millimeters.
-  - name: snowfall_cm
-    description: Snowfall in centimeters.
-  - name: country_english
-    description: Country name in English.
-  - name: latitude
-    description: Latitude of the weather observation location.
-  - name: longitude
-    description: Longitude of the weather observation location.
-  - name: energy_mwh
-    description: Total energy generated in megawatt-hours.
-  - name: capacity_utilization_percent
-    description: Percentage of capacity utilization based on net electrical capacity.
+  - name: join_power_generation
+    description: Enriched power generation data with unit details, weather data, and calculated metrics
+    columns:
+      - name: power_generation_id
+        description: Unique identifier for each power generation record
+        tests:
+          - unique
+          - not_null
+
+      - name: power_generation_unit_id
+        description: Foreign key to power generation unit
+        tests:
+          - not_null
+
+      - name: start_datetime
+        description: Parsed start datetime
+        tests:
+          - not_null
+
+      - name: end_datetime
+        description: Parsed end datetime
+        tests:
+          - not_null
+
+      - name: duration_hours
+        description: Duration of generation period in hours
+        tests:
+          - not_null
+
+      - name: value_mw
+        description: Power generated in megawatts
+        tests:
+          - not_null
+
+      - name: energy_mwh
+        description: Energy generated in megawatt-hours (power * duration)
+        tests:
+          - not_null
+
+      - name: capacity_utilization_percent
+        description: Capacity utilization as percentage of net capacity

@@ -1,22 +1,36 @@
+version: 2
+
 models:
-- name: aggregate_power_generation_by_energy_source
-  description: This model aggregates power generation data by energy source, providing
-    insights into the number of units, total duration, total energy produced, and
-    power metrics for each energy source on a monthly basis.
-  columns:
-  - name: start_year
-    description: The year when the power generation started.
-  - name: start_month
-    description: The month when the power generation started.
-  - name: energy_source
-    description: The type of energy source used for power generation.
-  - name: number_of_units
-    description: The count of distinct power generation units.
-  - name: total_duration_hours
-    description: The total duration of power generation in hours.
-  - name: total_energy_mwh
-    description: The total energy produced in megawatt-hours.
-  - name: avg_power_mw
-    description: The average power generated in megawatts.
-  - name: max_power_mw
-    description: The maximum power generated in megawatts.
+  - name: aggregate_power_generation_by_energy_source
+    description: Monthly aggregated power generation metrics by energy source
+    columns:
+      - name: start_year
+        description: Year of generation
+        tests:
+          - not_null
+
+      - name: start_month
+        description: Month of generation (1-12)
+        tests:
+          - not_null
+
+      - name: energy_source
+        description: Type of energy source
+        tests:
+          - not_null
+
+      - name: number_of_units
+        description: Number of distinct power generation units
+        tests:
+          - not_null
+
+      - name: total_energy_mwh
+        description: Total energy generated in megawatt-hours for the month
+        tests:
+          - not_null
+
+      - name: avg_power_mw
+        description: Average power output in megawatts
+
+      - name: total_capacity_mw
+        description: Total combined capacity in megawatts

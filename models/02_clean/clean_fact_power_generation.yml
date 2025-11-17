@@ -1,17 +1,34 @@
+version: 2
+
 models:
-- name: clean_fact_power_generation
-  description: This model cleans and transforms raw power generation data, providing
-    a structured and consistent format for analysis. It includes details about power
-    generation events, such as the start and end dates, the unit responsible for generation,
-    and the amount of power generated in megawatts.
-  columns:
-  - name: power_generation_id
-    description: A unique identifier for each power generation event.
-  - name: start_date
-    description: The date when the power generation event started.
-  - name: end_date
-    description: The date when the power generation event ended.
-  - name: power_generation_unit_id
-    description: The identifier for the unit responsible for the power generation.
-  - name: value_mw
-    description: The amount of power generated, measured in megawatts.
+  - name: clean_fact_power_generation
+    description: Cleaned power generation fact table with standardized column names
+    columns:
+      - name: power_generation_id
+        description: Unique identifier for each power generation record
+        tests:
+          - unique
+          - not_null
+
+      - name: start_date
+        description: Start date and time of generation period
+        tests:
+          - not_null
+
+      - name: end_date
+        description: End date and time of generation period
+        tests:
+          - not_null
+
+      - name: power_generation_unit_id
+        description: Foreign key to power generation unit
+        tests:
+          - not_null
+          - relationships:
+              to: ref('clean_dim_unit')
+              field: power_generation_unit_id
+
+      - name: value_mw
+        description: Power generated in megawatts
+        tests:
+          - not_null
