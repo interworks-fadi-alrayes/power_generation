@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: join_power_generation
+    description: Enriched power generation data with unit details, weather data, and calculated metrics
+    columns:
+      - name: power_generation_id
+        description: Unique identifier for each power generation record
+        tests:
+          - unique
+          - not_null
+
+      - name: power_generation_unit_id
+        description: Foreign key to power generation unit
+        tests:
+          - not_null
+
+      - name: start_datetime
+        description: Parsed start datetime
+        tests:
+          - not_null
+
+      - name: end_datetime
+        description: Parsed end datetime
+        tests:
+          - not_null
+
+      - name: duration_hours
+        description: Duration of generation period in hours
+        tests:
+          - not_null
+
+      - name: value_mw
+        description: Power generated in megawatts
+        tests:
+          - not_null
+
+      - name: energy_mwh
+        description: Energy generated in megawatt-hours (power * duration)
+        tests:
+          - not_null
+
+      - name: capacity_utilization_percent
+        description: Capacity utilization as percentage of net capacity
