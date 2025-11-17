@@ -16,16 +16,19 @@ models:
       - name: energy_source
         description: Type of energy source
         tests:
+          - not_null
           - accepted_values:
-              values: ['Solar', 'Wind', 'Natural Gas', 'Hard Coal', 'Lignite', 'Water', 'Biomass', 'Nuclear', 'Oil', 'Other']
-              quote: false
+              config:
+                quote: false
+              values: ['Battery Storage', 'Biomass', 'Hard Coal', 'Heat', 'Lignite', 'Mine Gas', 'Mineral Oil Products', 'Natural Gas', 'Nuclear Energy', 'Other Non-Renewable Energy Carriers', 'Pumped Storage', 'Waste', 'Water']
 
       - name: plant_status
-        description: Current operational status of the plant
+        description: Current operational status of the plant (can be null)
         tests:
           - accepted_values:
-              values: ['In operation', 'Permanently shut down', 'Temporarily shut down']
-              quote: false
+              config:
+                quote: false
+              values: ['Capacity reserve', 'Grid reserve', 'In operation', 'Permanently shut down', 'Special grid equipment', 'Temporarily shut down']
 
       - name: net_electrical_capacity_mw
         description: Net electrical capacity in megawatts

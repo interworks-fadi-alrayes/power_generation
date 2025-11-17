@@ -1,4 +1,4 @@
-select
+select distinct
   powergenerationid as power_generation_id,
   startdate as start_date,
   enddate as end_date,

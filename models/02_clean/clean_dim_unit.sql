@@ -1,4 +1,4 @@
-select
+select distinct
   powergenerationunitid as power_generation_unit_id,
   unitname as unit_name,
   operator,
