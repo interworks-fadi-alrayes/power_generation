@@ -1,0 +1,17 @@
+models:
+- name: clean_fact_power_generation
+  description: This model cleans and transforms raw power generation data, providing
+    a structured and consistent format for analysis. It includes details about power
+    generation events, such as the start and end dates, the unit responsible for generation,
+    and the amount of power generated in megawatts.
+  columns:
+  - name: power_generation_id
+    description: A unique identifier for each power generation event.
+  - name: start_date
+    description: The date when the power generation event started.
+  - name: end_date
+    description: The date when the power generation event ended.
+  - name: power_generation_unit_id
+    description: The identifier for the unit responsible for the power generation.
+  - name: value_mw
+    description: The amount of power generated, measured in megawatts.

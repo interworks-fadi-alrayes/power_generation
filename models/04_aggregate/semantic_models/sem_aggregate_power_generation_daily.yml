@@ -1,0 +1,131 @@
+semantic_models:
+- name: aggregate_power_generation_daily
+  description: Daily aggregated power generation data with weather and location details.
+  model: ref('aggregate_power_generation_daily')
+  defaults:
+    agg_time_dimension: generation_date
+  entities:
+  - name: power_generation_unit
+    type: primary
+    expr: power_generation_unit_id
+  dimensions:
+  - name: generation_date
+    type: time
+    type_params:
+      time_granularity: day
+  - name: start_year
+    type: categorical
+  - name: start_month
+    type: categorical
+  - name: start_day
+    type: categorical
+  - name: unit_name
+    type: categorical
+  - name: operator
+    type: categorical
+  - name: unit_city
+    type: categorical
+  - name: unit_state
+    type: categorical
+  - name: unit_postal_code
+    type: categorical
+  - name: energy_source
+    type: categorical
+  - name: plant_status
+    type: categorical
+  - name: voltage_level
+    type: categorical
+  - name: is_storage
+    type: categorical
+  - name: country
+    type: categorical
+  - name: latitude
+    type: categorical
+  - name: longitude
+    type: categorical
+  measures:
+  - name: gross_capacity_mw
+    agg: max
+    create_metric: true
+  - name: net_electrical_capacity_mw
+    agg: max
+    create_metric: true
+  - name: number_of_readings
+    agg: count
+    create_metric: true
+  - name: total_duration_hours
+    agg: sum
+    create_metric: true
+  - name: total_energy_mwh
+    agg: sum
+    create_metric: true
+  - name: avg_power_mw
+    agg: average
+    create_metric: true
+  - name: min_power_mw
+    agg: min
+    create_metric: true
+  - name: max_power_mw
+    agg: max
+    create_metric: true
+  - name: stddev_power_mw
+    agg: average
+    create_metric: true
+  - name: avg_capacity_utilization_percent
+    agg: average
+    create_metric: true
+  - name: min_capacity_utilization_percent
+    agg: min
+    create_metric: true
+  - name: max_capacity_utilization_percent
+    agg: max
+    create_metric: true
+  - name: avg_temperature_2m_c
+    agg: average
+    create_metric: true
+  - name: min_temperature_2m_c
+    agg: min
+    create_metric: true
+  - name: max_temperature_2m_c
+    agg: max
+    create_metric: true
+  - name: avg_wind_speed_10m_mps
+    agg: average
+    create_metric: true
+  - name: max_wind_speed_10m_mps
+    agg: max
+    create_metric: true
+  - name: avg_wind_speed_80m_mps
+    agg: average
+    create_metric: true
+  - name: max_wind_speed_80m_mps
+    agg: max
+    create_metric: true
+  - name: avg_shortwave_radiation_wpm2
+    agg: average
+    create_metric: true
+  - name: avg_direct_radiation_wpm2
+    agg: average
+    create_metric: true
+  - name: avg_diffuse_radiation_wpm2
+    agg: average
+    create_metric: true
+  - name: total_precipitation_mm
+    agg: sum
+    create_metric: true
+  - name: total_rain_mm
+    agg: sum
+    create_metric: true
+  - name: total_snowfall_cm
+    agg: sum
+    create_metric: true
+  - name: avg_cloud_cover_percent
+    agg: average
+    create_metric: true
+  - name: avg_pressure_msl_hpa
+    agg: average
+    create_metric: true
+  - name: count_power_generation_unit
+    agg: count
+    create_metric: true
+    expr: power_generation_unit_id

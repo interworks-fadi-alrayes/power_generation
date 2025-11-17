@@ -1,0 +1,47 @@
+models:
+- name: clean_dim_weather
+  description: This model provides a cleaned and standardized view of weather data,
+    including temperature, wind speed, radiation, precipitation, and geographical
+    information. It is used to support analyses related to weather conditions and
+    their impact on various factors such as energy production and consumption.
+  columns:
+  - name: timestamp_cet
+    description: The timestamp of the weather data in Central European Time.
+  - name: temperature_2m_c
+    description: The air temperature at 2 meters above ground level, measured in degrees
+      Celsius.
+  - name: wind_speed_10m_mps
+    description: The wind speed at 10 meters above ground level, measured in meters
+      per second.
+  - name: wind_speed_80m_mps
+    description: The wind speed at 80 meters above ground level, measured in meters
+      per second.
+  - name: shortwave_radiation_wpm2
+    description: The amount of shortwave radiation received, measured in watts per
+      square meter.
+  - name: direct_radiation_wpm2
+    description: The amount of direct radiation received, measured in watts per square
+      meter.
+  - name: diffuse_radiation_wpm2
+    description: The amount of diffuse radiation received, measured in watts per square
+      meter.
+  - name: precipitation_mm
+    description: The total precipitation, measured in millimeters.
+  - name: cloud_cover_percent
+    description: The percentage of the sky covered by clouds.
+  - name: pressure_msl_hpa
+    description: The atmospheric pressure at mean sea level, measured in hectopascals.
+  - name: rain_mm
+    description: The total rainfall, measured in millimeters.
+  - name: snowfall_cm
+    description: The total snowfall, measured in centimeters.
+  - name: postal_code
+    description: The postal code of the location where the weather data was recorded.
+  - name: country_english
+    description: The English name of the country where the weather data was recorded.
+  - name: latitude
+    description: The latitude coordinate of the location where the weather data was
+      recorded.
+  - name: longitude
+    description: The longitude coordinate of the location where the weather data was
+      recorded.
