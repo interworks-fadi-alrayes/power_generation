@@ -39,6 +39,9 @@ semantic_models:
   - name: is_storage
     description: Boolean flag for storage facilities
     type: categorical
+  - name: is_renewable
+    description: Boolean flag indicating if energy source is renewable
+    type: categorical
   measures:
   - name: net_electrical_capacity_mw
     description: Net electrical capacity in megawatts (maximum for the day)
