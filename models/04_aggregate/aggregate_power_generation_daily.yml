@@ -35,6 +35,9 @@ models:
       - name: is_storage
         description: Boolean flag for storage facilities
 
+      - name: is_renewable
+        description: Boolean flag indicating if energy source is renewable (Water, Biomass, Waste, Battery Storage, Pumped Storage)
+
       # Capacity Metrics
       - name: net_electrical_capacity_mw
         description: Net electrical capacity in megawatts (maximum for the day)
