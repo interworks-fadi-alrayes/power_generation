@@ -46,21 +46,21 @@ select
   min(temperature_2m_c) as min_temperature_2m_c,
   max(temperature_2m_c) as max_temperature_2m_c,
 
-  avg(wind_speed_10m_m_s) as avg_wind_speed_10m_m_s,
-  max(wind_speed_10m_m_s) as max_wind_speed_10m_m_s,
+  avg(wind_speed_10m_mps) as avg_wind_speed_10m_mps,
+  max(wind_speed_10m_mps) as max_wind_speed_10m_mps,
 
-  avg(wind_speed_80m_m_s) as avg_wind_speed_80m_m_s,
-  max(wind_speed_80m_m_s) as max_wind_speed_80m_m_s,
+  avg(wind_speed_80m_mps) as avg_wind_speed_80m_mps,
+  max(wind_speed_80m_mps) as max_wind_speed_80m_mps,
 
-  avg(shortwave_radiation_w_m2) as avg_shortwave_radiation_w_m2,
-  avg(direct_radiation_w_m2) as avg_direct_radiation_w_m2,
-  avg(diffuse_radiation_w_m2) as avg_diffuse_radiation_w_m2,
+  avg(shortwave_radiation_wpm2) as avg_shortwave_radiation_wpm2,
+  avg(direct_radiation_wpm2) as avg_direct_radiation_wpm2,
+  avg(diffuse_radiation_wpm2) as avg_diffuse_radiation_wpm2,
 
   sum(precipitation_mm) as total_precipitation_mm,
   sum(rain_mm) as total_rain_mm,
   sum(snowfall_cm) as total_snowfall_cm,
 
-  avg(cloud_cover) as avg_cloud_cover,
+  avg(cloud_cover_pct) as avg_cloud_cover_pct,
   avg(pressure_msl_hpa) as avg_pressure_msl_hpa,
 
   -- Location
