@@ -3,6 +3,9 @@ version: 2
 models:
   - name: join_power_generation
     description: Joined fact table with unit and weather data at hourly granularity
+    constraints:
+      - type: primary_key
+        columns: [power_generation_id]
     columns:
       - name: power_generation_id
         description: Unique identifier for each power generation reading

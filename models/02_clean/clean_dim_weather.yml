@@ -3,6 +3,9 @@ version: 2
 models:
   - name: clean_dim_weather
     description: Cleaned weather dimension table with standardized column names and measurements
+    constraints:
+      - type: primary_key
+        columns: [weather_datetime, postal_code]
     columns:
       - name: weather_datetime
         description: Timestamp of weather observation (converted from TIME)

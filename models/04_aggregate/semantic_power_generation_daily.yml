@@ -1,0 +1,232 @@
+version: 2
+
+semantic_models:
+  - name: semantic_power_generation_daily
+    description: Semantic model for daily power generation metrics with unit and weather data
+    model: ref('aggregate_power_generation_daily')
+
+    # Primary Keys
+    entities:
+      - name: generation_date
+        type: primary
+        expr: generation_date
+
+      - name: power_generation_unit
+        type: primary
+        expr: power_generation_unit_id
+
+    # Dimensions for filtering and grouping
+    dimensions:
+      # Time dimension
+      - name: generation_date
+        type: time
+        expr: generation_date
+        type_params:
+          time_granularity: day
+
+      # Unit dimensions
+      - name: unit_name
+        type: categorical
+        expr: unit_name
+
+      - name: unit_operator
+        type: categorical
+        expr: unit_operator
+
+      - name: unit_city
+        type: categorical
+        expr: unit_city
+
+      - name: unit_state
+        type: categorical
+        expr: unit_state
+
+      - name: energy_source
+        type: categorical
+        expr: energy_source
+        values:
+          - Battery Storage
+          - Biomass
+          - Hard Coal
+          - Heat
+          - Lignite
+          - Mine Gas
+          - Mineral Oil Products
+          - Natural Gas
+          - Nuclear Energy
+          - Other Non-Renewable Energy Carriers
+          - Pumped Storage
+          - Waste
+          - Water
+
+      - name: plant_status
+        type: categorical
+        expr: plant_status
+        values:
+          - Capacity reserve
+          - Grid reserve
+          - In operation
+          - Permanently shut down
+          - Special grid equipment
+          - Temporarily shut down
+
+      - name: is_storage
+        type: categorical
+        expr: is_storage
+        values:
+          - true
+          - false
+
+    # Measures for aggregation
+    measures:
+      # Generation count metrics
+      - name: total_number_of_readings
+        description: Total count of hourly readings across all units and days
+        agg: sum
+        expr: number_of_readings
+
+      - name: avg_number_of_readings
+        description: Average number of hourly readings per day per unit
+        agg: avg
+        expr: number_of_readings
+
+      # Duration metrics
+      - name: total_generation_hours
+        description: Total hours of power generation across all units and days
+        agg: sum
+        expr: total_duration_hours
+
+      - name: avg_generation_hours
+        description: Average generation hours per day per unit
+        agg: avg
+        expr: total_duration_hours
+
+      # Energy metrics (MWh)
+      - name: total_energy_mwh
+        description: Total energy generated in megawatt-hours
+        agg: sum
+        expr: total_energy_mwh
+
+      - name: avg_daily_energy_mwh
+        description: Average daily energy generation per unit
+        agg: avg
+        expr: total_energy_mwh
+
+      # Power metrics (MW)
+      - name: avg_power_output_mw
+        description: Average power output across all periods
+        agg: avg
+        expr: avg_power_mw
+
+      - name: min_power_output_mw
+        description: Minimum power output recorded
+        agg: min
+        expr: min_power_mw
+
+      - name: max_power_output_mw
+        description: Maximum power output (peak demand)
+        agg: max
+        expr: max_power_mw
+
+      # Capacity metrics
+      - name: total_capacity_mw
+        description: Total net electrical capacity across all units
+        agg: sum
+        expr: net_electrical_capacity_mw
+
+      - name: avg_capacity_mw
+        description: Average net electrical capacity per unit
+        agg: avg
+        expr: net_electrical_capacity_mw
+
+      - name: max_capacity_mw
+        description: Maximum net electrical capacity
+        agg: max
+        expr: net_electrical_capacity_mw
+
+      # Utilization metrics
+      - name: avg_capacity_utilization_percent
+        description: Average capacity utilization percentage
+        agg: avg
+        expr: avg_capacity_utilization_percent
+
+      - name: max_capacity_utilization_percent
+        description: Maximum (peak) capacity utilization percentage
+        agg: max
+        expr: max_capacity_utilization_percent
+
+      # Weather metrics - Temperature
+      - name: avg_temperature_c
+        description: Average temperature at 2m height in Celsius
+        agg: avg
+        expr: avg_temperature_2m_c
+
+      - name: min_temperature_c
+        description: Minimum temperature recorded
+        agg: min
+        expr: min_temperature_2m_c
+
+      - name: max_temperature_c
+        description: Maximum temperature recorded
+        agg: max
+        expr: max_temperature_2m_c
+
+      # Weather metrics - Wind
+      - name: avg_wind_speed_10m_mps
+        description: Average wind speed at 10m height in meters per second
+        agg: avg
+        expr: avg_wind_speed_10m_mps
+
+      - name: avg_wind_speed_80m_mps
+        description: Average wind speed at 80m height (turbine height)
+        agg: avg
+        expr: avg_wind_speed_80m_mps
+
+      # Weather metrics - Solar radiation
+      - name: avg_shortwave_radiation_wpm2
+        description: Average total shortwave solar radiation in W/m²
+        agg: avg
+        expr: avg_shortwave_radiation_wpm2
+
+      - name: avg_direct_radiation_wpm2
+        description: Average direct solar radiation in W/m²
+        agg: avg
+        expr: avg_direct_radiation_wpm2
+
+      - name: avg_diffuse_radiation_wpm2
+        description: Average diffuse solar radiation in W/m²
+        agg: avg
+        expr: avg_diffuse_radiation_wpm2
+
+      # Weather metrics - Precipitation
+      - name: total_precipitation_mm
+        description: Total precipitation (rain + snow equivalent) in millimeters
+        agg: sum
+        expr: total_precipitation_mm
+
+      - name: total_rain_mm
+        description: Total rainfall in millimeters
+        agg: sum
+        expr: total_rain_mm
+
+      - name: total_snowfall_cm
+        description: Total snowfall in centimeters
+        agg: sum
+        expr: total_snowfall_cm
+
+      # Weather metrics - Other
+      - name: avg_cloud_cover_percent
+        description: Average cloud cover percentage (0-100)
+        agg: avg
+        expr: avg_cloud_cover_percent
+
+      - name: avg_pressure_hpa
+        description: Average atmospheric pressure at mean sea level in hectopascals
+        agg: avg
+        expr: avg_pressure_msl_hpa
+
+      # Derived metrics
+      - name: count_of_unit_days
+        description: Count of unique unit-day combinations
+        agg: count
+        expr: power_generation_unit_id

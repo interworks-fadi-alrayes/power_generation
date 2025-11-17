@@ -3,6 +3,9 @@ version: 2
 models:
   - name: clean_dim_unit
     description: Cleaned dimension table for power generation units with standardized column names
+    constraints:
+      - type: primary_key
+        columns: [power_generation_unit_id]
     columns:
       - name: power_generation_unit_id
         description: Unique identifier for power generation unit (primary key)
