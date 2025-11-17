@@ -18,6 +18,12 @@ select
   plant_status,
   is_storage,
 
+  -- Renewable energy classification
+  case
+    when energy_source in ('Water', 'Biomass', 'Waste', 'Battery Storage', 'Pumped Storage') then true
+    else false
+  end as is_renewable,
+
   -- Unit capacity (takes latest value per day)
   max(net_electrical_capacity_mw) as net_electrical_capacity_mw,
 
@@ -63,4 +69,5 @@ group by
   unit_state,
   energy_source,
   plant_status,
-  is_storage
+  is_storage,
+  is_renewable
