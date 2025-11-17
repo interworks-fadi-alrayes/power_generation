@@ -52,6 +52,7 @@ semantic_models:
     create_metric: true
   - name: number_of_readings
     agg: count
+    expr: 1
     create_metric: true
   - name: total_duration_hours
     agg: sum
