@@ -1,5 +1,9 @@
 select
   to_timestamp("TIME") as weather_datetime,
+  postal_code,
+  country_english as country,
+  latitude,
+  longitude,
   temperature_2m_c,
   wind_speed_10m_m_s as wind_speed_10m_mps,
   wind_speed_80m_m_s as wind_speed_80m_mps,
@@ -11,8 +15,4 @@ select
   pressure_msl_hpa,
   rain_mm,
   snowfall_cm,
-  postal_code,
-  country_english as country,
-  latitude,
-  longitude
 from {{ source('meteostat', 'dim_weather') }}
