@@ -44,9 +44,8 @@ models:
       +materialized: table
     02_clean:
       +schema: O2_CLEAN
-    03_join:
-      +schema: O3_JOIN
-    04_aggregate:
-      +schema: O4_AGGREGATE
+    03_mart:
+      +schema: O3_MART
+      +materialized: table
 flags:
   require_generic_test_arguments_property: true

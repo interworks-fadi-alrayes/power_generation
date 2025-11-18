@@ -13,16 +13,6 @@ models:
           - unique
           - not_null
 
-      - name: start_date
-        description: Start date and time of generation period in DD.MM.YYYY HH24:MI format
-        tests:
-          - not_null
-
-      - name: end_date
-        description: End date and time of generation period in DD.MM.YYYY HH24:MI format
-        tests:
-          - not_null
-
       - name: power_generation_unit_id
         description: Foreign key to power generation unit dimension
         tests:
@@ -34,5 +24,20 @@ models:
 
       - name: value_mw
         description: Power output in megawatts during this period
+        tests:
+          - not_null
+
+      - name: start_datetime
+        description: Start date and time of generation period (parsed timestamp)
+        tests:
+          - not_null
+
+      - name: start_date
+        description: Start date of generation period (date only)
+        tests:
+          - not_null
+
+      - name: duration_hours
+        description: Duration of the generation period in hours (calculated from start and end times)
         tests:
           - not_null
