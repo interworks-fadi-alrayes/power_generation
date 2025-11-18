@@ -1,7 +1,7 @@
 semantic_models:
-- name: aggregate_power_generation_daily
+- name: mart_power_generation_daily
   description: Daily aggregated power generation metrics by unit with weather data
-  model: ref('aggregate_power_generation_daily')
+  model: ref('mart_power_generation_daily')
   defaults:
     agg_time_dimension: date
   entities:

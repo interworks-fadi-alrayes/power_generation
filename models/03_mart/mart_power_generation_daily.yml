@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: aggregate_power_generation_daily
+  - name: mart_power_generation_daily
     description: Daily aggregated power generation metrics by unit with weather data
     constraints:
       - type: primary_key
