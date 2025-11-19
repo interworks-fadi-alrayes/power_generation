@@ -1,0 +1,2303 @@
+version: 2
+
+models:
+  - name: demo_agg_001
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_002
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_003
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_004
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_005
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_006
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_007
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_008
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_009
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_010
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_011
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_012
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_013
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_014
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_015
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_016
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_017
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_018
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_019
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_020
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_021
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_022
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_023
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_024
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_025
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_026
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_027
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_028
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_029
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_030
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_031
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_032
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_033
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_034
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_035
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_036
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_037
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_038
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_039
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_040
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_041
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_042
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_043
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_044
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_045
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_046
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_047
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_048
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_049
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_050
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_051
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_052
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_053
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_054
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_055
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_056
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_057
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_058
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_059
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_060
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_061
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_062
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_063
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_064
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_065
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_066
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_067
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_068
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_069
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_070
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_071
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_072
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_073
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_074
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_075
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_076
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_077
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_078
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_079
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_080
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_081
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_082
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_083
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_084
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_085
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_086
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_087
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_088
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_089
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_090
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_091
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_092
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_093
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_094
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_095
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_096
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_097
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_098
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_099
+    config:
+      materialized: ephemeral
+
+  - name: demo_agg_100
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_001
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_002
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_003
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_004
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_005
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_006
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_007
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_008
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_009
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_010
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_011
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_012
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_013
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_014
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_015
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_016
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_017
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_018
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_019
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_020
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_021
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_022
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_023
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_024
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_025
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_026
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_027
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_028
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_029
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_030
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_031
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_032
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_033
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_034
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_035
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_036
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_037
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_038
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_039
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_040
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_041
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_042
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_043
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_044
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_045
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_046
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_047
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_048
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_049
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_050
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_051
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_052
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_053
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_054
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_055
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_056
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_057
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_058
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_059
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_060
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_061
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_062
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_063
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_064
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_065
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_066
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_067
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_068
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_069
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_070
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_071
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_072
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_073
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_074
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_075
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_076
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_077
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_078
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_079
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_080
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_081
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_082
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_083
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_084
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_085
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_086
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_087
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_088
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_089
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_090
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_091
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_092
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_093
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_094
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_095
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_096
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_097
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_098
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_099
+    config:
+      materialized: ephemeral
+
+  - name: demo_base_100
+    config:
+      materialized: ephemeral
+
+  - name: demo_final_001
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_002
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_003
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_004
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_005
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_006
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_007
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_008
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_009
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_010
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_011
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_012
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_013
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_014
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_015
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_016
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_017
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_018
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_019
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_020
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_021
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_022
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_023
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_024
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_025
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_026
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_027
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_028
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_029
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_030
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_031
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_032
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_033
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_034
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_035
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_036
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_037
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_038
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_039
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_040
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_041
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_042
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_043
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_044
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_045
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_046
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_047
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_048
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_049
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_050
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_051
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_052
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_053
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_054
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_055
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_056
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_057
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_058
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_059
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_060
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_061
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_062
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_063
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_064
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_065
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_066
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_067
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_068
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_069
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_070
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_071
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_072
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_073
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_074
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_075
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_076
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_077
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_078
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_079
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_080
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_081
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_082
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_083
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_084
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_085
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_086
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_087
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_088
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_089
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_090
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_091
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_092
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_093
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_094
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_095
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_096
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_097
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_098
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_099
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_final_100
+    config:
+      materialized: ephemeral
+    columns:
+      - name: generation_date
+        tests:
+          - not_null
+      - name: unit_name
+        tests:
+          - not_null
+
+  - name: demo_intermediate_001
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_002
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_003
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_004
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_005
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_006
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_007
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_008
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_009
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_010
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_011
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_012
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_013
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_014
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_015
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_016
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_017
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_018
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_019
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_020
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_021
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_022
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_023
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_024
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_025
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_026
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_027
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_028
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_029
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_030
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_031
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_032
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_033
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_034
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_035
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_036
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_037
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_038
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_039
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_040
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_041
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_042
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_043
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_044
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_045
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_046
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_047
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_048
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_049
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_050
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_051
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_052
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_053
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_054
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_055
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_056
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_057
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_058
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_059
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_060
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_061
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_062
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_063
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_064
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_065
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_066
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_067
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_068
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_069
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_070
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_071
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_072
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_073
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_074
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_075
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_076
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_077
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_078
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_079
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_080
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_081
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_082
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_083
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_084
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_085
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_086
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_087
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_088
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_089
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_090
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_091
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_092
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_093
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_094
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_095
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_096
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_097
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_098
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_099
+    config:
+      materialized: ephemeral
+
+  - name: demo_intermediate_100
+    config:
+      materialized: ephemeral
+
