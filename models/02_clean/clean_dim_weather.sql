@@ -14,5 +14,5 @@ select
   cloudcover as cloud_cover_percent,
   pressure_msl_hpa,
   rain_mm,
-  snowfall_cm,
+  snowfall_cm
 from {{ source('meteostat', 'dim_weather') }}
