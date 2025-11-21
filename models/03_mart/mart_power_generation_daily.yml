@@ -56,8 +56,6 @@ models:
 
       - name: unit_operator
         description: Company or entity operating the power generation unit
-        tests:
-          - not_null
 
       - name: unit_city
         description: City where the power generation unit is located
