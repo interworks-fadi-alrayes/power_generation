@@ -1,0 +1,49 @@
+semantic_models:
+- name: power_generation_daily
+  description: Daily summary of power generation metrics for analyzing daily power
+    output and performance.
+  model: ref('mart_power_generation_daily')
+  defaults:
+    agg_time_dimension: generation_date
+  entities:
+  - name: generation_date
+    type: primary
+    expr: date
+  dimensions:
+  - name: generation_date
+    description: The date for which the power generation data is summarized.
+    type: time
+    type_params:
+      time_granularity: day
+  - name: is_maintenance_performed
+    description: Indicates whether maintenance was performed on the given date.
+    expr: maintenance_performed
+    type: categorical
+  measures:
+  - name: total_power_generated
+    description: The total amount of power generated on the given date.
+    agg: sum
+    create_metric: true
+  - name: average_power_output
+    description: The average power output measured throughout the day.
+    agg: average
+    create_metric: true
+  - name: peak_power_output
+    description: The highest power output recorded during the day.
+    agg: max
+    create_metric: true
+  - name: power_generation_efficiency
+    description: The efficiency of power generation calculated as a ratio of output
+      to input.
+    agg: average
+    create_metric: true
+  - name: downtime_hours
+    description: The total number of hours the power generation was non-operational
+      during the day.
+    agg: sum
+    create_metric: true
+  - name: count_generation_date
+    agg: count
+    create_metric: true
+    expr: date
+  primary_entity: generation_date
