@@ -4,9 +4,9 @@
     Used in CI/CD to clean up schemas after PR merge.
 
     Example: For branch 'feature-branch', deletes schemas like:
+    - feature_branch_O0_UTILITY
     - feature_branch_O2_CLEAN
-    - feature_branch_O3_JOIN
-    - feature_branch_O4_AGGREGATE
+    - feature_branch_O3_MART
 
     Usage: dbt run-operation delete_dev_schemas_by_branch --args '{branch_name: feature-branch}'
   -#}
