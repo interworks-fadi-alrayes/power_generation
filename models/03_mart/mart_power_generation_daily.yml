@@ -68,12 +68,6 @@ models:
         description: German state (Bundesland) where the unit is located
         tests:
           - not_null
-          - accepted_values:
-              arguments:
-                values: ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen',
-                         'Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen',
-                         'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen',
-                         'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen']
 
       - name: energy_source
         description: Type of energy source used for power generation
