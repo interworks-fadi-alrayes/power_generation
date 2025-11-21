@@ -1,0 +1,221 @@
+version: 2
+
+models:
+  - name: mart_power_generation_daily
+    description: |
+      Daily aggregated power generation metrics by unit, enriched with weather data.
+
+      This mart model combines power generation facts with unit dimensions and weather data,
+      then aggregates to daily grain per power generation unit. It serves as the primary
+      table for analyzing daily power generation performance, capacity utilization, and
+      weather correlation.
+
+      **Grain**: One row per power generation unit per day
+
+      **Key Features**:
+      - Joins facts, unit dimensions, and weather data
+      - Aggregates hourly readings to daily summaries
+      - Calculates renewable energy classification
+      - Provides min/max/avg statistics for all numeric metrics
+
+      **Use Cases**:
+      - Daily power generation reporting
+      - Capacity utilization analysis
+      - Weather impact analysis on power generation
+      - Renewable vs non-renewable energy tracking
+
+    config:
+      materialized: table
+      schema: O3_MART
+
+    constraints:
+      - type: primary_key
+        columns: [power_generation_unit_id, start_date]
+
+    columns:
+      # Primary Keys
+      - name: power_generation_unit_id
+        description: Unique identifier for the power generation unit (part of composite primary key)
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('clean_dim_unit')
+                field: power_generation_unit_id
+
+      - name: start_date
+        description: Date of power generation aggregation (part of composite primary key)
+        tests:
+          - not_null
+
+      # Unit Dimension Attributes
+      - name: unit_name
+        description: Name of the power generation unit
+        tests:
+          - not_null
+
+      - name: unit_operator
+        description: Company or entity operating the power generation unit
+
+      - name: unit_city
+        description: City where the power generation unit is located
+        tests:
+          - not_null
+
+      - name: unit_state
+        description: German state (Bundesland) where the unit is located
+        tests:
+          - not_null
+
+      - name: energy_source
+        description: Type of energy source used for power generation
+        tests:
+          - not_null
+
+      - name: is_storage
+        description: Boolean flag indicating if the unit has storage capability
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [true, false]
+
+      - name: plant_status
+        description: Current operational status of the power plant
+        tests:
+          - not_null
+
+      - name: net_electrical_capacity_mw
+        description: Net electrical capacity of the unit in megawatts (MW)
+        tests:
+          - not_null
+
+      - name: is_renewable
+        description: |
+          Boolean flag indicating if the energy source is classified as renewable.
+          Renewable sources include: Water, Biomass, Waste, Battery Storage, Pumped Storage
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [true, false]
+
+      # Weather Metrics - Maximum Values
+      - name: max_temperature_2m_c
+        description: Maximum temperature at 2 meters height in Celsius for the day
+
+      - name: max_wind_speed_10m_mps
+        description: Maximum wind speed at 10 meters height in meters per second
+
+      - name: max_wind_speed_80m_mps
+        description: Maximum wind speed at 80 meters height in meters per second
+
+      - name: max_shortwave_radiation_wpm2
+        description: Maximum shortwave solar radiation in watts per square meter
+
+      - name: max_direct_radiation_wpm2
+        description: Maximum direct solar radiation in watts per square meter
+
+      - name: max_diffuse_radiation_wpm2
+        description: Maximum diffuse solar radiation in watts per square meter
+
+      - name: max_precipitation_mm
+        description: Maximum precipitation in millimeters
+
+      - name: max_cloud_cover_percent
+        description: Maximum cloud cover percentage (0-100)
+
+      - name: max_pressure_msl_hpa
+        description: Maximum mean sea level atmospheric pressure in hectopascals
+
+      - name: max_rain_mm
+        description: Maximum rainfall in millimeters
+
+      - name: max_snowfall_cm
+        description: Maximum snowfall in centimeters
+
+      - name: max_energy_mwh
+        description: Maximum energy generated in a single hour reading (megawatt-hours)
+
+      - name: max_value_mw
+        description: Maximum power output in megawatts during the day
+
+      # Weather Metrics - Average Values
+      - name: avg_temperature_2m_c
+        description: Average temperature at 2 meters height in Celsius
+
+      - name: avg_wind_speed_10m_mps
+        description: Average wind speed at 10 meters height in meters per second
+
+      - name: avg_wind_speed_80m_mps
+        description: Average wind speed at 80 meters height in meters per second
+
+      - name: avg_shortwave_radiation_wpm2
+        description: Average shortwave solar radiation in watts per square meter
+
+      - name: avg_direct_radiation_wpm2
+        description: Average direct solar radiation in watts per square meter
+
+      - name: avg_diffuse_radiation_wpm2
+        description: Average diffuse solar radiation in watts per square meter
+
+      - name: avg_precipitation_mm
+        description: Average precipitation in millimeters
+
+      - name: avg_cloud_cover_percent
+        description: Average cloud cover percentage (0-100)
+
+      - name: avg_pressure_msl_hpa
+        description: Average mean sea level atmospheric pressure in hectopascals
+
+      - name: avg_rain_mm
+        description: Average rainfall in millimeters
+
+      - name: avg_snowfall_cm
+        description: Average snowfall in centimeters
+
+      - name: avg_energy_mwh
+        description: Average energy generated per hour reading (megawatt-hours)
+
+      - name: avg_value_mw
+        description: Average power output in megawatts
+
+      # Weather Metrics - Minimum Values
+      - name: min_temperature_2m_c
+        description: Minimum temperature at 2 meters height in Celsius
+
+      - name: min_wind_speed_10m_mps
+        description: Minimum wind speed at 10 meters height in meters per second
+
+      - name: min_wind_speed_80m_mps
+        description: Minimum wind speed at 80 meters height in meters per second
+
+      - name: min_shortwave_radiation_wpm2
+        description: Minimum shortwave solar radiation in watts per square meter
+
+      - name: min_direct_radiation_wpm2
+        description: Minimum direct solar radiation in watts per square meter
+
+      - name: min_diffuse_radiation_wpm2
+        description: Minimum diffuse solar radiation in watts per square meter
+
+      - name: min_precipitation_mm
+        description: Minimum precipitation in millimeters
+
+      - name: min_cloud_cover_percent
+        description: Minimum cloud cover percentage (0-100)
+
+      - name: min_pressure_msl_hpa
+        description: Minimum mean sea level atmospheric pressure in hectopascals
+
+      - name: min_rain_mm
+        description: Minimum rainfall in millimeters
+
+      - name: min_snowfall_cm
+        description: Minimum snowfall in centimeters
+
+      - name: min_energy_mwh
+        description: Minimum energy generated in a single hour reading (megawatt-hours)
+
+      - name: min_value_mw
+        description: Minimum power output in megawatts during the day
