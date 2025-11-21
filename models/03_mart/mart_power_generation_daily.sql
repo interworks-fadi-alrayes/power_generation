@@ -67,7 +67,7 @@ joined as (
 )
 
 select
- *
+  *
 from joined
 -- Aggregate data on a daily basis per power generation unit
 -- Add a new column: is_renewable for energy_source ('Water', 'Biomass', 'Waste', 'Battery Storage', 'Pumped Storage')
