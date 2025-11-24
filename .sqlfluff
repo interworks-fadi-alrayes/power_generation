@@ -15,10 +15,6 @@ dialect = snowflake
 # Use dbt as the templater for SQL files.
 templater = dbt
 
-# Exclude directories from linting
-# Macros are Jinja template definitions that don't compile to standalone nodes
-exclude = macros/**
-
 
 # Maximum length for formatted output lines.
 output_line_length = 180

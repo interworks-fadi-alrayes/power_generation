@@ -1,0 +1,4 @@
+# Exclude macros from SQL linting
+# Macros are Jinja template definitions that don't compile to standalone SQL nodes
+# They only generate SQL when invoked by models
+macros/
