@@ -469,3 +469,44 @@ models:
 
           Lowest instantaneous power reading. For variable renewables, often zero.
           For dispatchable plants, indicates minimum stable generation level.
+
+      - name: total_energy_mwh
+        description: |
+          Total energy generated during the day in megawatt-hours (MWh).
+
+          Sum of all hourly energy readings for the day. This is the primary metric
+          for actual energy production and is calculated as power (MW) × duration (hours).
+          Use this for tracking total daily energy output and calculating cumulative generation.
+
+      - name: total_power_mw
+        description: |
+          Total power output summed across all hourly readings in megawatts.
+
+          Sum of instantaneous power readings. Note that this is different from energy
+          (which accounts for duration). Useful for understanding total power capacity
+          being utilized across all hourly measurements.
+
+      - name: avg_capacity_utilization_percent
+        description: |
+          Average capacity utilization percentage during the day.
+
+          Calculated as: (Power Output / Net Electrical Capacity) × 100, then averaged
+          across all hourly readings. Values close to 100% indicate full utilization.
+          Lower values suggest intermittent generation, economic dispatch decisions,
+          or maintenance constraints.
+
+      - name: max_capacity_utilization_percent
+        description: |
+          Maximum capacity utilization percentage achieved during the day.
+
+          The highest utilization rate reached in any hour. For renewables, this indicates
+          peak conditions (e.g., brightest sun for solar, strongest wind for wind).
+          For dispatchable plants, consistently high maximums indicate baseload operation.
+
+      - name: min_capacity_utilization_percent
+        description: |
+          Minimum capacity utilization percentage during the day.
+
+          The lowest utilization rate in any hour. For intermittent renewables, often zero
+          (e.g., solar at night). For baseload plants, consistently low minimums may
+          indicate operational issues or curtailment.
