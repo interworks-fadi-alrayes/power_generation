@@ -4,28 +4,15 @@
 #
 # These metrics provide high-level business KPIs calculated from
 # the power_generation_daily semantic model measures.
-#
-# Note: Semantic Layer support in dbt Fusion is coming soon.
-# These metrics follow the modern MetricFlow specification and will
-# work with dbt Core's semantic layer today, and with Fusion when
-# semantic layer support is released.
+
 
 metrics:
-  # =========================================
-  # Q1: Renewable Energy Share Tracking
-  # =========================================
-
   - name: renewable_energy_share_pct
     description: |
       Renewable energy percentage of total generation.
       Calculated as: (Renewable Energy / Total Energy) × 100
-
       Tracks progress toward renewable energy targets and energy transition goals.
       Renewable sources include: Water, Biomass, Waste, Battery Storage, Pumped Storage.
-
-      **Example Query:**
-      "How has the renewable energy share percentage changed month-over-month
-      this year compared to last year?"
     type: ratio
     label: Renewable Energy Share %
     type_params:
@@ -35,23 +22,14 @@ metrics:
       denominator:
         name: total_energy_generated_mwh
 
-  # =========================================
-  # Q2: Unit Performance Benchmarking
-  # =========================================
-
   - name: avg_daily_energy_per_unit_mwh
     description: |
       Average daily energy production per unit.
       Calculated as: Total Energy Generated / Number of Units
-
       Useful for:
       - Benchmarking unit performance against peers
       - Identifying underperforming assets
       - Regional comparison (e.g., which states have highest avg daily per unit)
-
-      **Example Query:**
-      "Which German states generated the most total energy in MWh last month,
-      and what was their average daily energy per unit?"
     type: ratio
     label: Avg Daily Energy per Unit (MWh)
     type_params:
@@ -60,21 +38,12 @@ metrics:
       denominator:
         name: unique_unit_count
 
-  # =========================================
-  # Q5: Operator Efficiency Analysis
-  # =========================================
-
   - name: load_factor_pct
     description: |
       Load factor percentage - ratio of average output to peak output.
       Calculated as: (Average Power Output / Peak Power Output) × 100
-
       High load factors (>70%) indicate consistent baseload generation (coal, nuclear, hydro).
       Low load factors (<30%) suggest peaking plants or highly variable renewables (solar, wind).
-
-      **Example Query:**
-      "Compare the top 10 operators by total installed capacity, showing their
-      load factor percentage to identify the most efficient operators."
     type: ratio
     label: Load Factor %
     type_params:
@@ -93,10 +62,6 @@ metrics:
       - Comparing efficiency across different energy sources and regions
       - Operator performance benchmarking
       - Investment return calculations
-
-      **Example Query:**
-      "Compare the top 10 operators by total installed capacity, showing their
-      energy intensity to identify the most efficient operators."
     type: ratio
     label: Energy Intensity (MWh/MW)
     type_params:
