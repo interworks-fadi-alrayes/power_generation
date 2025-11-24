@@ -131,7 +131,7 @@ semantic_models:
 
       - name: avg_unit_capacity_mw
         description: Average net electrical capacity per unit in megawatts
-        agg: avg
+        agg: average
         expr: net_electrical_capacity_mw
         create_metric: true
 
@@ -159,7 +159,7 @@ semantic_models:
         description: |
           Average power output in megawatts per unit.
           Useful for benchmarking unit performance.
-        agg: avg
+        agg: average
         expr: avg_value_mw
         create_metric: true
 
@@ -195,7 +195,7 @@ semantic_models:
         description: |
           Average energy generated per hour across all units.
           Typical hourly generation rate.
-        agg: avg
+        agg: average
         expr: avg_energy_mwh
         create_metric: true
 
@@ -219,7 +219,7 @@ semantic_models:
 
       - name: avg_temperature_c
         description: Average daily temperature at 2 meters height in Celsius
-        agg: avg
+        agg: average
         expr: avg_temperature_2m_c
         create_metric: true
 
@@ -241,7 +241,7 @@ semantic_models:
 
       - name: avg_wind_speed_10m_mps
         description: Average wind speed at 10 meters height in meters per second
-        agg: avg
+        agg: average
         expr: avg_wind_speed_10m_mps
         create_metric: true
 
@@ -257,7 +257,7 @@ semantic_models:
 
       - name: avg_wind_speed_80m_mps
         description: Average wind speed at 80 meters height (wind turbine hub height)
-        agg: avg
+        agg: average
         expr: avg_wind_speed_80m_mps
         create_metric: true
 
@@ -273,7 +273,7 @@ semantic_models:
 
       - name: avg_solar_radiation_wpm2
         description: Average shortwave solar radiation in watts per square meter
-        agg: avg
+        agg: average
         expr: avg_shortwave_radiation_wpm2
         create_metric: true
 
@@ -285,7 +285,7 @@ semantic_models:
 
       - name: avg_direct_radiation_wpm2
         description: Average direct solar radiation in watts per square meter
-        agg: avg
+        agg: average
         expr: avg_direct_radiation_wpm2
         create_metric: true
 
@@ -301,7 +301,7 @@ semantic_models:
 
       - name: avg_precipitation_mm
         description: Average precipitation in millimeters
-        agg: avg
+        agg: average
         expr: avg_precipitation_mm
         create_metric: true
 
@@ -313,7 +313,7 @@ semantic_models:
 
       - name: avg_rain_mm
         description: Average rainfall in millimeters
-        agg: avg
+        agg: average
         expr: avg_rain_mm
         create_metric: true
 
@@ -335,7 +335,7 @@ semantic_models:
 
       - name: avg_cloud_cover_pct
         description: Average cloud cover percentage (0-100)
-        agg: avg
+        agg: average
         expr: avg_cloud_cover_percent
         create_metric: true
 
