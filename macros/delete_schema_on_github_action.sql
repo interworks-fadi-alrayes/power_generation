@@ -1,7 +1,15 @@
-{% macro delete_dev_schemas_by_branch(branch_name) %}
+{% macro delete_dev_schemas_by_branch(branch_name) -%}
   {#-
     Deletes all development schemas matching a branch name prefix.
-    Used in CI/CD to clean up schemas after PR merge.
+
+    Used in CI/CD workflows to clean up schemas after PR merge or branch deletion.
+    This prevents schema proliferation in the development database and reduces
+    storage costs.
+
+    The macro:
+    1. Sanitizes the branch name to match dbt's schema naming convention
+    2. Searches for all schemas with the matching prefix
+    3. Drops each schema with CASCADE to remove all objects
 
     Example: For branch 'feature-branch', deletes schemas like:
     - feature_branch_O0_UTILITY
@@ -13,34 +21,41 @@
 
   {%- set database = 'power_generation_dev' -%}
   {%- set re = modules.re -%}
-  {%- set schema_prefix = re.sub('[^\w]', '_', branch_name) | lower | trim  -%}
+  {%- set schema_prefix = re.sub('[^\w]', '_', branch_name) | lower | trim -%}
 
   {{ log("Searching for schemas in " ~ database ~ " with prefix: " ~ schema_prefix, info=True) }}
 
-  {%- set sql_find_schemas %}
+  {#- Query to find all schemas matching the branch prefix -#}
+  {%- set sql_find_schemas -%}
     SELECT schema_name
     FROM {{ database }}.information_schema.schemata
     WHERE lower(schema_name) LIKE '{{ schema_prefix }}_%'
       AND schema_name NOT IN ('INFORMATION_SCHEMA', 'PUBLIC')
-  {%- endset %}
+  {%- endset -%}
 
   {%- set results = run_query(sql_find_schemas) -%}
 
-  {%- if results is not none and results | length > 0 %}
+  {#- Drop each schema found -#}
+  {%- if results is not none and results | length > 0 -%}
     {%- set schemas = results.columns[0].values() -%}
     {{ log("Found " ~ schemas | length ~ " schema(s) to drop", info=True) }}
 
-    {%- for schema in schemas %}
+    {%- for schema in schemas -%}
       {{ log("Dropping schema: " ~ database ~ "." ~ schema, info=True) }}
-      {%- set sql_drop %}
+
+      {%- set sql_drop -%}
         DROP SCHEMA IF EXISTS {{ database }}.{{ schema }} CASCADE
-      {%- endset %}
-      {% do run_query(sql_drop) %}
+      {%- endset -%}
+
+      {%- do run_query(sql_drop) -%}
       {{ log("Successfully dropped: " ~ database ~ "." ~ schema, info=True) }}
-    {%- endfor %}
-  {%- else %}
+    {%- endfor -%}
+
+  {#- No schemas found matching the prefix -#}
+  {%- else -%}
     {{ log("No schemas found matching prefix: " ~ schema_prefix, info=True) }}
-  {%- endif %}
+  {%- endif -%}
 
   {{ log("Schema cleanup completed", info=True) }}
-{% endmacro %}
+
+{%- endmacro %}
