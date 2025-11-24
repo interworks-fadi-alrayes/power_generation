@@ -1,65 +1,362 @@
+# =========================================
+# POWER GENERATION SEMANTIC MODEL
+# =========================================
+#
+# This semantic model defines the business logic for querying power generation data
+# through the dbt Semantic Layer. It provides governed metrics and dimensions for
+# self-service analytics.
+#
+# Note: Semantic Layer support in dbt Fusion is coming soon. This configuration
+# follows the modern MetricFlow specification and will work with dbt Core today,
+# and with Fusion when semantic layer support is released.
+#
+# Related Files:
+# - models/03_mart/metrics/metrics_power_generation_daily.yml (derived metrics)
+# - models/03_mart/mart_power_generation_daily.sql (underlying model)
+
 semantic_models:
-- name: power_generation_daily
-  description: Daily power generation metrics by unit with weather data
-  model: ref('mart_power_generation_daily')
-  defaults:
-    agg_time_dimension: date
-  entities:
-  - name: power_generation_record
-    type: primary
-    expr: power_generation_unit_id || '_' || start_date
-  - name: power_generation_unit
-    type: foreign
-    expr: power_generation_unit_id
-  dimensions:
-  - name: date
-    description: Date of power generation
-    expr: start_date
-    type: time
-    type_params:
-      time_granularity: day
-  - name: unit_name
-    description: Name of the power generation unit
-    type: categorical
-  - name: unit_operator
-    description: Operator of the unit
-    type: categorical
-  - name: unit_city
-    description: City where the unit is located
-    type: categorical
-  - name: unit_state
-    description: German state where the unit is located
-    type: categorical
-  - name: energy_source
-    description: Type of energy source
-    type: categorical
-  - name: plant_status
-    description: Operational status of the plant
-    type: categorical
-  - name: is_storage
-    description: Boolean flag for storage facilities
-    type: categorical
-  - name: is_renewable
-    description: Boolean flag indicating if energy source is renewable
-    type: categorical
-  measures:
-  - name: net_electrical_capacity_mw
-    description: Net electrical capacity in megawatts
-    agg: max
-    create_metric: true
-  - name: max_temperature_2m_c
-    description: Maximum temperature at 2m in Celsius
-    agg: max
-    create_metric: true
-  - name: max_wind_speed_10m_mps
-    description: Maximum wind speed at 10m in meters per second
-    agg: max
-    create_metric: true
-  - name: count_records
-    agg: count
-    create_metric: true
-    expr: power_generation_unit_id
-  - name: count_units
-    agg: count_distinct
-    create_metric: true
-    expr: power_generation_unit_id
+  - name: power_generation_daily
+    description: |
+      Daily power generation semantic model for analyzing energy production, capacity utilization,
+      and weather correlations across German power generation units.
+
+      This semantic model provides a comprehensive view of daily power generation metrics enriched
+      with weather data, enabling analysis of renewable vs non-renewable energy production,
+      capacity utilization patterns, and environmental factors affecting power generation.
+
+    model: ref('mart_power_generation_daily')
+
+    defaults:
+      agg_time_dimension: date
+
+    entities:
+      - name: power_generation_record
+        type: primary
+        description: Unique identifier for each daily power generation record (composite of unit_id and date)
+        expr: power_generation_unit_id || '_' || start_date
+
+      - name: power_generation_unit
+        type: foreign
+        description: Foreign key reference to power generation unit dimension
+        expr: power_generation_unit_id
+
+    dimensions:
+      - name: date
+        description: Date of power generation (primary time dimension for analysis)
+        expr: start_date
+        type: time
+        type_params:
+          time_granularity: day
+
+      - name: unit_name
+        description: Name of the power generation unit facility
+        type: categorical
+
+      - name: unit_operator
+        description: Company or organization operating the power generation unit
+        type: categorical
+
+      - name: unit_city
+        description: City location of the power generation unit
+        type: categorical
+
+      - name: unit_state
+        description: German federal state (Bundesland) where the unit is located
+        type: categorical
+
+      - name: energy_source
+        description: Type of energy source (e.g., Wind, Solar, Water, Natural Gas, Coal)
+        type: categorical
+
+      - name: plant_status
+        description: Current operational status of the power plant
+        type: categorical
+
+      - name: is_storage
+        description: Flag indicating if the unit has energy storage capability
+        type: categorical
+
+      - name: is_renewable
+        description: Flag indicating if the energy source is classified as renewable (Water, Biomass, Waste, Battery/Pumped Storage)
+        type: categorical
+
+    measures:
+      # =========================================
+      # KEY BUSINESS METRICS - Start Here
+      # =========================================
+
+      - name: total_energy_generated_mwh
+        description: |
+          Total energy generated across all units and time periods in megawatt-hours (MWh).
+          This is the primary metric for understanding actual energy production.
+        agg: sum
+        expr: avg_energy_mwh
+        create_metric: true
+
+      - name: total_energy_generated_gwh
+        description: |
+          Total energy generated in gigawatt-hours (GWh).
+          Same as total_energy_generated_mwh divided by 1,000 for easier reading of large values.
+        agg: sum
+        expr: avg_energy_mwh / 1000
+        create_metric: true
+
+      - name: total_energy_generated_twh
+        description: |
+          Total energy generated in terawatt-hours (TWh).
+          Same as total_energy_generated_mwh divided by 1,000,000 for national-level reporting.
+        agg: sum
+        expr: avg_energy_mwh / 1000000
+        create_metric: true
+
+      # =========================================
+      # CAPACITY AND INFRASTRUCTURE
+      # =========================================
+
+      - name: total_installed_capacity_mw
+        description: |
+          Total installed electrical capacity across all units in megawatts (MW).
+          Represents maximum potential generation capacity.
+        agg: sum
+        expr: net_electrical_capacity_mw
+        create_metric: true
+
+      - name: total_installed_capacity_gw
+        description: |
+          Total installed capacity in gigawatts (GW).
+          Same as total_installed_capacity_mw divided by 1,000.
+        agg: sum
+        expr: net_electrical_capacity_mw / 1000
+        create_metric: true
+
+      - name: avg_unit_capacity_mw
+        description: Average net electrical capacity per unit in megawatts
+        agg: average
+        expr: net_electrical_capacity_mw
+        create_metric: true
+
+      # =========================================
+      # POWER OUTPUT METRICS
+      # =========================================
+
+      - name: total_max_power_output_mw
+        description: |
+          Sum of maximum power output across all units in megawatts.
+          Useful for understanding peak generation across portfolio.
+        agg: sum
+        expr: max_value_mw
+        create_metric: true
+
+      - name: total_avg_power_output_mw
+        description: |
+          Sum of average power output across all units in megawatts.
+          Represents typical/sustained generation levels.
+        agg: sum
+        expr: avg_value_mw
+        create_metric: true
+
+      - name: avg_power_output_mw
+        description: |
+          Average power output in megawatts per unit.
+          Useful for benchmarking unit performance.
+        agg: average
+        expr: avg_value_mw
+        create_metric: true
+
+      - name: peak_power_output_mw
+        description: |
+          Maximum power output achieved by any single unit during the period.
+          Indicates highest instantaneous generation.
+        agg: max
+        expr: max_value_mw
+        create_metric: true
+
+      - name: min_power_output_mw
+        description: |
+          Minimum power output across all units.
+          Helps identify baseload levels or generation shutdowns.
+        agg: min
+        expr: min_value_mw
+        create_metric: true
+
+      # =========================================
+      # ENERGY GENERATION STATISTICS
+      # =========================================
+
+      - name: peak_hourly_energy_mwh
+        description: |
+          Maximum energy generated in any single hour across the time period.
+          Indicates best hourly performance.
+        agg: max
+        expr: max_energy_mwh
+        create_metric: true
+
+      - name: avg_hourly_energy_mwh
+        description: |
+          Average energy generated per hour across all units.
+          Typical hourly generation rate.
+        agg: average
+        expr: avg_energy_mwh
+        create_metric: true
+
+      - name: min_hourly_energy_mwh
+        description: |
+          Minimum energy generated in any single hour.
+          Identifies lowest generation periods.
+        agg: min
+        expr: min_energy_mwh
+        create_metric: true
+
+      # =========================================
+      # WEATHER METRICS - TEMPERATURE
+      # =========================================
+
+      - name: max_temperature_c
+        description: Maximum daily temperature at 2 meters height in Celsius
+        agg: max
+        expr: max_temperature_2m_c
+        create_metric: true
+
+      - name: avg_temperature_c
+        description: Average daily temperature at 2 meters height in Celsius
+        agg: average
+        expr: avg_temperature_2m_c
+        create_metric: true
+
+      - name: min_temperature_c
+        description: Minimum daily temperature at 2 meters height in Celsius
+        agg: min
+        expr: min_temperature_2m_c
+        create_metric: true
+
+      # =========================================
+      # WEATHER METRICS - WIND SPEED (10m)
+      # =========================================
+
+      - name: max_wind_speed_10m_mps
+        description: Maximum wind speed at 10 meters height in meters per second
+        agg: max
+        expr: max_wind_speed_10m_mps
+        create_metric: true
+
+      - name: avg_wind_speed_10m_mps
+        description: Average wind speed at 10 meters height in meters per second
+        agg: average
+        expr: avg_wind_speed_10m_mps
+        create_metric: true
+
+      # =========================================
+      # WEATHER METRICS - WIND SPEED (80m)
+      # =========================================
+
+      - name: max_wind_speed_80m_mps
+        description: Maximum wind speed at 80 meters height (wind turbine hub height)
+        agg: max
+        expr: max_wind_speed_80m_mps
+        create_metric: true
+
+      - name: avg_wind_speed_80m_mps
+        description: Average wind speed at 80 meters height (wind turbine hub height)
+        agg: average
+        expr: avg_wind_speed_80m_mps
+        create_metric: true
+
+      # =========================================
+      # WEATHER METRICS - SOLAR RADIATION
+      # =========================================
+
+      - name: max_solar_radiation_wpm2
+        description: Maximum shortwave solar radiation in watts per square meter
+        agg: max
+        expr: max_shortwave_radiation_wpm2
+        create_metric: true
+
+      - name: avg_solar_radiation_wpm2
+        description: Average shortwave solar radiation in watts per square meter
+        agg: average
+        expr: avg_shortwave_radiation_wpm2
+        create_metric: true
+
+      - name: max_direct_radiation_wpm2
+        description: Maximum direct solar radiation in watts per square meter
+        agg: max
+        expr: max_direct_radiation_wpm2
+        create_metric: true
+
+      - name: avg_direct_radiation_wpm2
+        description: Average direct solar radiation in watts per square meter
+        agg: average
+        expr: avg_direct_radiation_wpm2
+        create_metric: true
+
+      # =========================================
+      # WEATHER METRICS - PRECIPITATION
+      # =========================================
+
+      - name: max_precipitation_mm
+        description: Maximum precipitation in millimeters
+        agg: max
+        expr: max_precipitation_mm
+        create_metric: true
+
+      - name: avg_precipitation_mm
+        description: Average precipitation in millimeters
+        agg: average
+        expr: avg_precipitation_mm
+        create_metric: true
+
+      - name: max_rain_mm
+        description: Maximum rainfall in millimeters
+        agg: max
+        expr: max_rain_mm
+        create_metric: true
+
+      - name: avg_rain_mm
+        description: Average rainfall in millimeters
+        agg: average
+        expr: avg_rain_mm
+        create_metric: true
+
+      - name: total_rain_mm
+        description: Total rainfall across all units and periods
+        agg: sum
+        expr: avg_rain_mm
+        create_metric: true
+
+      # =========================================
+      # WEATHER METRICS - CLOUD COVER
+      # =========================================
+
+      - name: max_cloud_cover_pct
+        description: Maximum cloud cover percentage (0-100)
+        agg: max
+        expr: max_cloud_cover_percent
+        create_metric: true
+
+      - name: avg_cloud_cover_pct
+        description: Average cloud cover percentage (0-100)
+        agg: average
+        expr: avg_cloud_cover_percent
+        create_metric: true
+
+      - name: min_cloud_cover_pct
+        description: Minimum cloud cover percentage (0-100)
+        agg: min
+        expr: min_cloud_cover_percent
+        create_metric: true
+
+      # =========================================
+      # COUNTING MEASURES
+      # =========================================
+
+      - name: daily_record_count
+        description: Total number of daily power generation records
+        agg: count
+        expr: power_generation_unit_id
+        create_metric: true
+
+      - name: unique_unit_count
+        description: Number of distinct power generation units reporting data
+        agg: count_distinct
+        expr: power_generation_unit_id
+        create_metric: true
