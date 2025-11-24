@@ -17,7 +17,7 @@ templater = dbt
 
 # Exclude directories from linting
 # Macros are Jinja template definitions that don't compile to standalone nodes
-exclude = macros/
+exclude = macros/**
 
 
 # Maximum length for formatted output lines.
