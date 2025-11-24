@@ -11,43 +11,9 @@
 # semantic layer support is released.
 
 metrics:
-  - name: capacity_utilization_pct
-    description: |
-      Capacity utilization percentage - measures how efficiently generation capacity is being used.
-      Calculated as: (Average Power Output / Installed Capacity) × 100
-
-      Values close to 100% indicate full utilization, while lower values suggest:
-      - Intermittent renewables (solar/wind) dependent on weather
-      - Economic dispatch decisions
-      - Maintenance or operational constraints
-
-      **Example Query:**
-      "What was the capacity utilization for wind farms in Bavaria last month?"
-    type: ratio
-    label: Capacity Utilization %
-    type_params:
-      numerator:
-        name: total_avg_power_output_mw
-      denominator:
-        name: total_installed_capacity_mw
-
-  - name: load_factor_pct
-    description: |
-      Load factor percentage - ratio of average output to peak output.
-      Calculated as: (Average Power Output / Peak Power Output) × 100
-
-      High load factors (>70%) indicate consistent baseload generation (coal, nuclear, hydro).
-      Low load factors (<30%) suggest peaking plants or highly variable renewables (solar, wind).
-
-      **Example Query:**
-      "Compare load factors between solar and nuclear units"
-    type: ratio
-    label: Load Factor %
-    type_params:
-      numerator:
-        name: total_avg_power_output_mw
-      denominator:
-        name: total_max_power_output_mw
+  # =========================================
+  # Q1: Renewable Energy Share Tracking
+  # =========================================
 
   - name: renewable_energy_share_pct
     description: |
@@ -58,7 +24,8 @@ metrics:
       Renewable sources include: Water, Biomass, Waste, Battery Storage, Pumped Storage.
 
       **Example Query:**
-      "What percentage of Germany's energy came from renewables this year?"
+      "How has the renewable energy share percentage changed month-over-month
+      this year compared to last year?"
     type: ratio
     label: Renewable Energy Share %
     type_params:
@@ -68,6 +35,10 @@ metrics:
       denominator:
         name: total_energy_generated_mwh
 
+  # =========================================
+  # Q2: Unit Performance Benchmarking
+  # =========================================
+
   - name: avg_daily_energy_per_unit_mwh
     description: |
       Average daily energy production per unit.
@@ -76,10 +47,11 @@ metrics:
       Useful for:
       - Benchmarking unit performance against peers
       - Identifying underperforming assets
-      - Portfolio optimization decisions
+      - Regional comparison (e.g., which states have highest avg daily per unit)
 
       **Example Query:**
-      "Which operators have the highest average energy output per unit?"
+      "Which German states generated the most total energy in MWh last month,
+      and what was their average daily energy per unit?"
     type: ratio
     label: Avg Daily Energy per Unit (MWh)
     type_params:
@@ -88,6 +60,29 @@ metrics:
       denominator:
         name: unique_unit_count
 
+  # =========================================
+  # Q5: Operator Efficiency Analysis
+  # =========================================
+
+  - name: load_factor_pct
+    description: |
+      Load factor percentage - ratio of average output to peak output.
+      Calculated as: (Average Power Output / Peak Power Output) × 100
+
+      High load factors (>70%) indicate consistent baseload generation (coal, nuclear, hydro).
+      Low load factors (<30%) suggest peaking plants or highly variable renewables (solar, wind).
+
+      **Example Query:**
+      "Compare the top 10 operators by total installed capacity, showing their
+      load factor percentage to identify the most efficient operators."
+    type: ratio
+    label: Load Factor %
+    type_params:
+      numerator:
+        name: total_avg_power_output_mw
+      denominator:
+        name: total_max_power_output_mw
+
   - name: energy_intensity_mwh_per_mw
     description: |
       Energy intensity - total energy produced per MW of installed capacity.
@@ -95,12 +90,13 @@ metrics:
 
       Higher values indicate better capacity utilization over time.
       Useful for:
-      - Comparing efficiency across different energy sources
-      - Regional performance analysis
+      - Comparing efficiency across different energy sources and regions
+      - Operator performance benchmarking
       - Investment return calculations
 
       **Example Query:**
-      "Compare energy intensity between wind farms in coastal vs inland regions"
+      "Compare the top 10 operators by total installed capacity, showing their
+      energy intensity to identify the most efficient operators."
     type: ratio
     label: Energy Intensity (MWh/MW)
     type_params:
@@ -108,28 +104,3 @@ metrics:
         name: total_energy_generated_mwh
       denominator:
         name: total_installed_capacity_mw
-
-  - name: peak_to_average_ratio
-    description: |
-      Peak to average power ratio - measures generation variability.
-      Calculated as: Peak Power Output / Average Power Output
-
-      Higher ratios indicate:
-      - Highly variable generation (wind, solar)
-      - Peaking/cycling plants
-      - Intermittent operations
-
-      Lower ratios (close to 1.0) indicate:
-      - Steady baseload generation
-      - Consistent operations
-      - Reliable output
-
-      **Example Query:**
-      "Which units have the most stable generation profiles?"
-    type: ratio
-    label: Peak to Average Ratio
-    type_params:
-      numerator:
-        name: total_max_power_output_mw
-      denominator:
-        name: total_avg_power_output_mw
