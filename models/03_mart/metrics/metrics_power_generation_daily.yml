@@ -30,7 +30,6 @@ metrics:
         name: total_avg_power_output_mw
       denominator:
         name: total_installed_capacity_mw
-      filter: null
 
   - name: load_factor_pct
     description: |
@@ -49,7 +48,6 @@ metrics:
         name: total_avg_power_output_mw
       denominator:
         name: total_max_power_output_mw
-      filter: null
 
   - name: renewable_energy_share_pct
     description: |
@@ -69,7 +67,6 @@ metrics:
         filter: "{{ Dimension('power_generation_daily__is_renewable') }} = True"
       denominator:
         name: total_energy_generated_mwh
-      filter: null
 
   - name: avg_daily_energy_per_unit_mwh
     description: |
@@ -90,7 +87,6 @@ metrics:
         name: total_energy_generated_mwh
       denominator:
         name: unique_unit_count
-      filter: null
 
   - name: energy_intensity_mwh_per_mw
     description: |
@@ -112,7 +108,6 @@ metrics:
         name: total_energy_generated_mwh
       denominator:
         name: total_installed_capacity_mw
-      filter: null
 
   - name: peak_to_average_ratio
     description: |
@@ -138,4 +133,3 @@ metrics:
         name: total_max_power_output_mw
       denominator:
         name: total_avg_power_output_mw
-      filter: null
