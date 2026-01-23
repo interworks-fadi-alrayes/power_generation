@@ -1,9 +1,8 @@
-version: 2
-
 sources:
   - name: smard
     description: Raw power generation data sources from smard
-    schema: O1_raw
+    database: raw
+    schema: smard
     tables:
       - name: fact_power_generation
         description: Fact table containing power generation readings
@@ -63,7 +62,8 @@ sources:
 
   - name: meteostat
     description: Raw weather data from meteostat
-    schema: O1_raw
+    database: raw
+    schema: meteostat
     tables:
       - name: dim_weather
         description: Dimension table for weather data
